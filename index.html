@@ -104,6 +104,8 @@
   --hero-line: rgba(35, 39, 46, 0.10);
   --hero-glow: rgba(223, 27, 34, 0.16);
   --hero-glow-2: rgba(74, 90, 106, 0.14);
+  --aura-1: rgba(223, 27, 34, 0.55);
+  --aura-2: rgba(74, 90, 106, 0.40);
   --ghost-bg: #FFFFFF;
   --ghost-fg: #1B1E23;
   --ghost-border: #CDD0D5;
@@ -126,13 +128,13 @@
   :root:not([data-theme="light"]) {
     --bg: #111317; --surface: #191C21; --surface-2: #20242A; --fg: #ECEEF1; --fg-2: #B4BBC4; --fg-3: #8F97A1;
     --line: #2C3138; --accent: #EF3B41; --accent-text: #FF7A7E; --accent-soft: #3A1517;
-    --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
+    --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --aura-1: rgba(223, 27, 34, 0.60); --aura-2: rgba(120, 140, 160, 0.32); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #111317; --surface: #191C21; --surface-2: #20242A; --fg: #ECEEF1; --fg-2: #B4BBC4; --fg-3: #8F97A1;
   --line: #2C3138; --accent: #EF3B41; --accent-text: #FF7A7E; --accent-soft: #3A1517;
-  --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
+  --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --aura-1: rgba(223, 27, 34, 0.60); --aura-2: rgba(120, 140, 160, 0.32); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -183,10 +185,16 @@ code { font-family: var(--mono); font-size: 0.86em; }
   mask-image: radial-gradient(ellipse 75% 70% at 65% 45%, #000 20%, transparent 75%); }
 .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background:
-    radial-gradient(520px 380px at 78% 32%, var(--hero-glow), transparent 70%),
     radial-gradient(460px 340px at 12% 100%, var(--hero-glow-2), transparent 70%),
     linear-gradient(90deg, transparent, rgba(223, 27, 34, .6) 50%, transparent) bottom / 100% 1px no-repeat; }
 .hero .wrap { z-index: 1; }
+.phone-slot { position: relative; isolation: isolate; }
+.phone-slot::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 50%; width: 680px; height: 680px; margin: -340px 0 0 -340px; border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from 0deg, var(--aura-1), transparent 28%, var(--aura-2) 50%, transparent 72%, var(--aura-1));
+  filter: blur(64px); opacity: 1; animation: aura-spin 18s linear infinite, aura-breathe 6s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .phone-slot::before { animation: none; } }
+@keyframes aura-spin { to { rotate: 360deg; } }
+@keyframes aura-breathe { from { scale: .85; opacity: .75; } to { scale: 1.1; opacity: 1; } }
 .hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; padding-block: 104px 112px; }
 .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--hero-fg-2); }
 .eyebrow i { width: 8px; height: 8px; border-radius: 2px; background: var(--color-brand-red); transform: rotate(45deg); display: inline-block; }
