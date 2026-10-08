@@ -650,9 +650,11 @@ table.t tr:last-child td { border-bottom: 0; }
 .pager span { min-width: 28px; height: 28px; display: grid; place-items: center; border-radius: 3px; border: 1px solid #E5E7EB; color: #374151; font-weight: 600; }
 .pager span.on { background: #1B1E23; color: #fff; border-color: #1B1E23; }
 .example-phone { display: none; }
-.example.is-phone .desk { display: none; }
+.example.is-phone .desk-scroll { display: none; }
+.desk-scroll { --hs-fade: var(--bg); }
+.desk-scroll .hs-track { padding-bottom: 24px; }
+.desk { min-width: 1120px; }
 .example.is-phone .example-phone { display: block; }
-@media (max-width: 1100px) { .kpi4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .row2 { grid-template-columns: 1fr; } }
 
 /* Developers */
 .code { position: relative; background: var(--code-bg); color: var(--code-fg); border-radius: 3px; padding: 20px 22px; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; }
@@ -677,8 +679,6 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: 
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .g2, .rules { grid-template-columns: 1fr; }
   .ramp > div { grid-template-columns: 1fr; gap: 4px; }
-  .app { grid-template-columns: 1fr; }
-  .side { display: none; }
   .brand span { display: none; }
   .pill { display: none; }
   section.block { padding-block: 88px 0; }
@@ -1034,6 +1034,7 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: 
     <p>A sketch of how the quotes screen could look. Switch views to see the same screen on a laptop and on a sales rep's phone. All names and figures are made up.</p>
   </div>
   <div class="viewer"><div class="tabs" role="group" aria-label="Preview size"><button type="button" data-view="desk" aria-pressed="true">Laptop</button><button type="button" data-view="phone" aria-pressed="false">Phone</button></div></div>
+  <div class="hscroll desk-scroll"><div class="hs-track">
   <div class="desk">
     <div class="chrome"><i></i><i></i><i></i><span class="url">sales.kci.co.ke/quotes</span></div>
     <div class="app">
@@ -1095,6 +1096,7 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: 
       </div>
     </div>
   </div>
+  </div></div>
   <div class="example-phone" data-phone></div>
 </section>
 
@@ -1156,7 +1158,7 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: 
 </div>
 </main>
 
-<footer class="site"><div class="wrap"><span>KCI Design System v0.1.0 · Draft · generated 9 Oct 2026 from <code>tokens.json</code></span><span>Internal · Kenya Coach Industries</span></div></footer>
+<footer class="site"><div class="wrap"><span>KCI Design System v0.1.0 · Draft · generated 9 Oct 2026 from <code>tokens.json</code></span><span>Internal · Kenya Coach Industries · Technology</span></div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <template id="phone-tpl">
