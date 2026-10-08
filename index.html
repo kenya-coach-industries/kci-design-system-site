@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KCI Design System</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Colours, typography, spacing, components and patterns for Kenya Coach Industries software and documents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/*
+ * Hand-synced from tokens.json (see design/tokens/README.md). If the two
+ * disagree, tokens.json wins.
+ */
+
+:root {
+  --color-brand-red: #DF1B22;
+  --color-brand-red-hover: #C4161D;
+  --color-brand-red-dark: #A8141A;
+  --color-brand-red-deepest: #6E0D11;
+  --color-brand-red-tint: #FDE8E9;
+
+  --color-neutral-white: #FFFFFF;
+  --color-neutral-graphite: #23272E;
+  --color-neutral-steel: #4A5A6A;
+  --color-neutral-steel-tint: #E8EDF2;
+  --color-neutral-muted: #5F6166;
+  --color-neutral-line: #DCDDD8;
+  --color-neutral-paper: #F6F6F4;
+
+  --color-status-warning: #C98A1E;
+  --color-status-warning-text: #7A4F05;
+  --color-status-warning-tint: #FDF3E1;
+  --color-status-success: #2E8B57;
+  --color-status-success-text: #1F6B45;
+  --color-status-success-tint: #E7F4EC;
+  --color-status-danger: #B42318;
+  --color-status-danger-tint: #FDECEA;
+  --color-status-info: #4A5A6A;
+  --color-status-info-tint: #E8EDF2;
+
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-doc: "Aptos", "Calibri", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 30px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(35, 39, 46, 0.08);
+  --shadow-md: 0 4px 12px rgba(35, 39, 46, 0.12);
+
+  /* Breakpoints cannot be used inside media queries as variables; listed for reference. */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+
+/* Layout concept: a dark hero with a fading grid and soft brand glow, then a
+   documentation body on a quiet paper ground, every example built from the tokens. */
+:root {
+  --bg: var(--color-neutral-paper);
+  --surface: var(--color-neutral-white);
+  --surface-2: #EFF1F3;
+  --fg: var(--color-neutral-graphite);
+  --fg-2: var(--color-neutral-steel);
+  --fg-3: var(--color-neutral-muted);
+  --line: var(--color-neutral-line);
+  --accent: var(--color-brand-red);
+  --accent-text: var(--color-brand-red-dark);
+  --accent-soft: var(--color-brand-red-tint);
+  --hero-bg: #FBFBFA;
+  --hero-fg: #1B1E23;
+  --hero-fg-2: #4A5A6A;
+  --hero-accent: #DF1B22;
+  --hero-line: rgba(35, 39, 46, 0.10);
+  --hero-glow: rgba(223, 27, 34, 0.16);
+  --hero-glow-2: rgba(74, 90, 106, 0.14);
+  --ghost-bg: #FFFFFF;
+  --ghost-fg: #1B1E23;
+  --ghost-border: #CDD0D5;
+  --grid-line: rgba(35, 39, 46, 0.07);
+  --code-bg: #16191E;
+  --code-fg: #E8EAED;
+  --display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --nav-bg: rgba(246, 246, 244, 0.82);
+  --canvas: #F7F7F8;
+  --canvas-dot: #DCDFE3;
+  --line-strong: #CDD0D5;
+  --btn-bg: #23272E;
+  --btn-fg: #FFFFFF;
+  --btn-bg-hover: #353A43;
+  --btn-bg-active: #0F1114;
+  --danger-line: #F0C2BD;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111317; --surface: #191C21; --surface-2: #20242A; --fg: #ECEEF1; --fg-2: #B4BBC4; --fg-3: #8F97A1;
+    --line: #2C3138; --accent: #EF3B41; --accent-text: #FF7A7E; --accent-soft: #3A1517;
+    --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111317; --surface: #191C21; --surface-2: #20242A; --fg: #ECEEF1; --fg-2: #B4BBC4; --fg-3: #8F97A1;
+  --line: #2C3138; --accent: #EF3B41; --accent-text: #FF7A7E; --accent-soft: #3A1517;
+  --hero-bg: #0B0D10; --hero-fg: #F4F5F7; --hero-fg-2: #A9B0B9; --hero-accent: #FF4A50; --hero-line: rgba(255, 255, 255, 0.12); --hero-glow: rgba(223, 27, 34, 0.30); --hero-glow-2: rgba(120, 140, 160, 0.18); --ghost-bg: rgba(255, 255, 255, 0.06); --ghost-fg: #F4F5F7; --ghost-border: rgba(255, 255, 255, 0.16); --grid-line: rgba(255, 255, 255, 0.06); --nav-bg: rgba(17, 19, 23, 0.82); --code-bg: #0B0D10; --canvas: #15181C; --canvas-dot: #2A2F36; --line-strong: #3A4049; --btn-bg: #ECEEF1; --btn-fg: #111317; --btn-bg-hover: #FFFFFF; --btn-bg-active: #C9CED6; --danger-line: #5A2420; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--display); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+code { font-family: var(--mono); font-size: 0.86em; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
+
+/* Navigation */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--nav-bg); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); font-weight: 700; letter-spacing: -0.01em; }
+.brand img { height: 26px; width: auto; background: #fff; padding: 4px 6px; border-radius: 3px; }
+.brand span { padding-left: 12px; border-left: 1px solid var(--line); }
+.nav-links { display: flex; gap: 22px; font-size: 14px; }
+.nav-links a { color: var(--fg-2); text-decoration: none; font-weight: 500; }
+.nav-links a:hover { color: var(--fg); }
+.nav-end { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.pill { font-family: var(--mono); font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--fg-2); }
+.icon-btn { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 3px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+
+/* Buttons used across the site */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-size: 15px; font-weight: 600; padding: 11px 18px; border-radius: 3px; border: 1px solid transparent; cursor: pointer; text-decoration: none; min-height: 44px; transition: transform .15s ease, background .15s ease, box-shadow .15s ease; }
+.btn:active { transform: translateY(1px); }
+.btn-red { background: var(--color-brand-red); color: #fff; box-shadow: 0 6px 20px -8px rgba(223, 27, 34, .7); }
+.btn-red:hover { background: var(--color-brand-red-hover); }
+.btn-ghost-dark { background: var(--ghost-bg); color: var(--ghost-fg); border-color: var(--ghost-border); }
+.btn-ghost-dark:hover { border-color: var(--hero-fg-2); }
+.btn-dark { background: var(--color-neutral-graphite); color: #fff; }
+.btn-dark:hover { filter: brightness(1.25); }
+.btn-outline { background: var(--surface); color: var(--fg); border-color: var(--line); }
+.btn-outline:hover { border-color: var(--fg-3); }
+.btn-danger { background: var(--color-status-danger); color: #fff; }
+.btn[disabled] { background: var(--surface-2); color: var(--fg-3); cursor: not-allowed; box-shadow: none; }
+.btn-sm { font-size: 13px; padding: 7px 12px; min-height: 36px; border-radius: 3px; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: var(--hero-bg); color: var(--hero-fg); border-bottom: 1px solid var(--line); }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 56px 56px; background-position: -1px -1px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 65% 45%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 75% 70% at 65% 45%, #000 20%, transparent 75%); }
+.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(520px 380px at 78% 32%, var(--hero-glow), transparent 70%),
+    radial-gradient(460px 340px at 12% 100%, var(--hero-glow-2), transparent 70%),
+    linear-gradient(90deg, transparent, rgba(223, 27, 34, .6) 50%, transparent) bottom / 100% 1px no-repeat; }
+.hero .wrap { z-index: 1; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; padding-block: 104px 112px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--hero-fg-2); }
+.eyebrow i { width: 8px; height: 8px; border-radius: 2px; background: var(--color-brand-red); transform: rotate(45deg); display: inline-block; }
+.hero h1 { font-size: clamp(38px, 5.6vw, 64px); font-weight: 800; letter-spacing: -0.035em; margin: 18px 0 20px; }
+.hero h1 em { font-style: normal; color: var(--hero-accent); }
+.hero .lede { font-size: 18px; color: var(--hero-fg-2); max-width: 54ch; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 44px; border-top: 1px solid var(--hero-line); }
+.stats div { padding: 18px 16px 0 0; }
+.stats b { display: block; font-size: 28px; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 13px; color: var(--hero-fg-2); }
+
+/* Phone mockup (hero and example) */
+.device { position: relative; width: 330px; max-width: 100%; margin-inline: auto; border-radius: 46px; padding: 10px; background: linear-gradient(160deg, #40454E, #17191D); box-shadow: 0 50px 90px -35px rgba(0, 0, 0, .75), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.hero .device { transform: rotate(-3deg); }
+.screen { position: relative; border-radius: 36px; overflow: hidden; background: #F3F4F6; color: #1B1E23; font-size: 13px; height: 660px; display: flex; flex-direction: column; }
+.notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 96px; height: 27px; border-radius: 20px; background: #0B0D10; z-index: 3; }
+.statusbar { display: flex; justify-content: space-between; padding: 13px 26px 4px; font-size: 12px; font-weight: 700; }
+.m-head { display: flex; align-items: center; gap: 10px; padding: 10px 18px 12px; }
+.m-head .who { line-height: 1.25; }
+.m-head small { color: #6B7280; font-size: 11px; }
+.m-head b { display: block; font-size: 16px; letter-spacing: -0.01em; }
+.m-bell { margin-left: auto; position: relative; width: 36px; height: 36px; border-radius: 3px; background: #fff; display: grid; place-items: center; color: #1B1E23; box-shadow: 0 1px 2px rgba(17, 24, 39, .06); }
+.m-bell::after { content: ""; position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-brand-red); border: 2px solid #fff; }
+.av { width: 36px; height: 36px; flex: none; border-radius: 3px; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #2B3038, #4A5A6A); }
+.av.sm { width: 32px; height: 32px; border-radius: 3px; font-size: 11px; }
+.av.c1 { background: linear-gradient(135deg, #DF1B22, #A8141A); } .av.c2 { background: linear-gradient(135deg, #2E8B57, #1F6B45); }
+.av.c3 { background: linear-gradient(135deg, #C98A1E, #7A4F05); } .av.c4 { background: linear-gradient(135deg, #4A5A6A, #23272E); }
+.m-card { margin: 0 18px 14px; padding: 16px; border-radius: 4px; color: #fff; position: relative; overflow: hidden; background: radial-gradient(160px 120px at 100% 0%, rgba(223, 27, 34, .55), transparent 70%), linear-gradient(150deg, #23272E, #121418); }
+.m-card small { color: #AEB4BD; font-size: 11px; font-weight: 500; }
+.m-card .big { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; margin: 2px 0 10px; }
+.m-card .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .14); overflow: hidden; }
+.m-card .bar i { display: block; height: 100%; width: 68%; border-radius: 3px; background: linear-gradient(90deg, #FF5A5F, #DF1B22); }
+.m-card .row { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: #C9CED6; }
+.m-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 18px 14px; }
+.m-actions div { display: grid; justify-items: center; gap: 6px; font-size: 10.5px; font-weight: 600; color: #374151; }
+.m-actions span { width: 48px; height: 48px; border-radius: 4px; background: #fff; display: grid; place-items: center; color: #1B1E23; box-shadow: 0 1px 2px rgba(17, 24, 39, .06); }
+.m-actions div:first-child span { background: var(--color-brand-red); color: #fff; box-shadow: 0 8px 16px -8px rgba(223, 27, 34, .8); }
+.m-alert { margin: 0 18px 14px; display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 3px; background: #FDF3E1; color: #7A4F05; font-size: 11.5px; font-weight: 600; }
+.m-sec { display: flex; justify-content: space-between; align-items: baseline; padding: 0 18px 8px; }
+.m-sec b { font-size: 14px; }
+.m-sec a { font-size: 11.5px; color: var(--color-brand-red-dark); font-weight: 600; text-decoration: none; }
+.m-list { flex: 1; overflow: hidden; padding: 0 18px; display: grid; gap: 8px; align-content: start; }
+.mq { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 4px; background: #fff; box-shadow: 0 1px 2px rgba(17, 24, 39, .06); }
+.mq > div { min-width: 0; }
+.mq b { display: block; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mq small { display: block; color: #6B7280; font-size: 10.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mq .r { text-align: right; }
+.mq .amt { font-weight: 700; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.dot { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; }
+.dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.dot.ok { color: #1F6B45; } .dot.wait { color: #7A4F05; } .dot.draft { color: #6B7280; }
+.m-nav { display: grid; grid-template-columns: repeat(5, 1fr); align-items: end; background: #fff; padding: 8px 8px 18px; border-top: 1px solid #E5E7EB; }
+.m-nav div { display: grid; justify-items: center; gap: 3px; font-size: 9.5px; font-weight: 600; color: #9CA3AF; }
+.m-nav .on { color: #1B1E23; }
+.m-nav .plus span { width: 46px; height: 46px; margin-top: -26px; border-radius: 4px; display: grid; place-items: center; background: var(--color-brand-red); color: #fff; box-shadow: 0 10px 20px -8px rgba(223, 27, 34, .9); border: 4px solid #F3F4F6; }
+
+/* Sections */
+section.block { padding-block: 128px 0; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: end; margin-bottom: 48px; }
+.kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.sec-head h2 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; margin-top: 8px; }
+.sec-head p { color: var(--fg-2); font-size: 17px; }
+.plain { display: flex; gap: 14px; align-items: flex-start; background: var(--accent-soft); color: var(--fg); padding: 16px 20px; border-radius: 3px; margin-bottom: 40px; max-width: 860px; }
+.plain b { color: var(--accent-text); white-space: nowrap; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 32px; min-width: 0; }
+.grid { display: grid; gap: 24px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* Use cases */
+.use { display: flex; flex-direction: column; gap: 14px; }
+.use .tag { font-size: 12px; font-weight: 600; color: var(--fg-3); text-transform: uppercase; letter-spacing: .06em; }
+.use h3 { font-size: 19px; }
+.use p { color: var(--fg-2); font-size: 15px; }
+.use .demo { margin-top: auto; padding: 16px; border-radius: 3px; background: var(--surface-2); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 76px; }
+
+/* Colour */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.swatch { all: unset; cursor: pointer; border-radius: 3px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); transition: transform .15s ease, box-shadow .15s ease; }
+.swatch:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.swatch:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.swatch .chip { height: 84px; }
+.swatch .meta { padding: 12px 14px 14px; font-size: 13px; display: grid; gap: 2px; }
+.swatch .meta b { font-size: 14px; text-transform: capitalize; }
+.swatch .meta .role { color: var(--fg-2); }
+.swatch .meta .use { color: var(--fg-3); font-size: 12px; }
+.swatch .meta code { color: var(--fg-3); font-size: 11.5px; }
+.group-title { font-size: 15px; font-weight: 700; margin: 48px 0 16px; }
+.rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.rule { padding: 28px; border-radius: 3px; background: var(--surface); border: 1px solid var(--line); }
+.rule h4 { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 10px; }
+.rule ul { margin: 0; padding-left: 18px; color: var(--fg-2); font-size: 14.5px; display: grid; gap: 6px; }
+.ok-mark { color: var(--color-status-success); } .no-mark { color: var(--color-status-danger); }
+
+/* Type */
+.ramp > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.ramp > div:last-child { border-bottom: 0; }
+.ramp .lbl { font-family: var(--mono); font-size: 12px; color: var(--fg-3); }
+.faces { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.face .big { font-size: 56px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin: 8px 0 12px; }
+.face p { color: var(--fg-2); font-size: 14px; }
+
+/* Space */
+.space-row { display: grid; grid-template-columns: 120px minmax(0, 1fr) 50px; align-items: center; gap: 12px; padding: 6px 0; font-size: 13px; }
+.space-row .bar { height: 14px; border-radius: 2px; background: var(--accent); }
+.radius-demo { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+.radius-demo div { width: 76px; height: 76px; background: var(--surface-2); border: 2px solid var(--fg-3); display: grid; place-items: center; font-family: var(--mono); font-size: 11px; color: var(--fg-2); }
+
+table.t { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.t th { text-align: left; font-size: 12px; font-weight: 600; color: var(--fg-3); text-transform: uppercase; letter-spacing: .05em; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+table.t td { padding: 12px; border-bottom: 1px solid var(--line); }
+table.t tr:last-child td { border-bottom: 0; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.t-wrap { overflow-x: auto; }
+
+/* Components */
+.comp { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; padding: 48px 0; border-top: 1px solid var(--line); }
+.comp h3 { font-size: 18px; }
+.comp .why { color: var(--fg-2); font-size: 14px; margin-top: 6px; }
+.stage { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; min-width: 0; }
+.stage.col { flex-direction: column; align-items: stretch; gap: 20px; }
+.field { display: grid; gap: 6px; max-width: 380px; }
+.field label { font-size: 14px; font-weight: 600; }
+.field input, .field select { font: inherit; font-size: 15px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 3px; background: var(--surface); color: var(--fg); min-height: 44px; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(223, 27, 34, .16); }
+.field .hint { font-size: 13px; color: var(--fg-3); }
+.field.err input { border-color: var(--color-status-danger); }
+.field .msg { font-size: 13px; color: var(--color-status-danger); font-weight: 500; }
+.alert { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 3px; font-size: 14.5px; border: 1px solid; }
+.alert svg { flex: none; margin-top: 2px; }
+.alert b { display: block; }
+.a-info { background: var(--color-status-info-tint); color: var(--color-neutral-graphite); border-color: #D3DBE3; }
+.a-success { background: var(--color-status-success-tint); color: var(--color-status-success-text); border-color: #CDE7D7; }
+.a-warning { background: var(--color-status-warning-tint); color: var(--color-status-warning-text); border-color: #F3E0BC; }
+.a-danger { background: var(--color-status-danger-tint); color: var(--color-status-danger); border-color: #F6CFCB; }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 4px 11px; border-radius: 999px; }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.b-neutral { background: var(--color-neutral-steel-tint); color: var(--color-neutral-graphite); }
+.b-success { background: var(--color-status-success-tint); color: var(--color-status-success-text); }
+.b-warning { background: var(--color-status-warning-tint); color: var(--color-status-warning-text); }
+.b-danger { background: var(--color-status-danger-tint); color: var(--color-status-danger); }
+.b-brand { background: var(--color-brand-red-tint); color: var(--color-brand-red-deepest); }
+.tabs { display: inline-flex; padding: 4px; gap: 4px; border-radius: 3px; background: var(--surface-2); }
+.tabs button { font: inherit; font-size: 14px; font-weight: 600; border: 0; background: transparent; color: var(--fg-2); padding: 8px 14px; border-radius: 3px; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: var(--shadow-sm); }
+.kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; align-items: start; }
+.stage.col > .tabs { align-self: flex-start; }
+.kpi-tile { padding: 18px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface); }
+.kpi-tile small { color: var(--fg-3); font-size: 13px; font-weight: 500; }
+.kpi-tile b { display: block; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin: 4px 0; font-variant-numeric: tabular-nums; }
+.kpi-tile .up { color: var(--color-status-success); font-size: 13px; font-weight: 600; }
+.empty { text-align: center; padding: 28px; border: 1.5px dashed var(--line); border-radius: 3px; width: 100%; color: var(--fg-2); }
+.empty b { display: block; color: var(--fg); font-size: 16px; margin-bottom: 4px; }
+
+/* Component sheets */
+.sheets { display: grid; gap: 40px; }
+.sheet { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--surface); }
+.sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 22px 28px; border-bottom: 1px solid var(--line); }
+.sheet-head h3 { font-size: 17px; }
+.sheet-head p { color: var(--fg-2); font-size: 14px; margin-top: 4px; max-width: 60ch; }
+.tok { display: flex; flex-wrap: wrap; gap: 6px; max-width: 420px; justify-content: flex-end; }
+.tok code { font-size: 11px; padding: 3px 7px; border-radius: 2px; background: var(--surface-2); color: var(--fg-2); }
+.canvas { padding: 40px 28px; background-color: var(--canvas); background-image: radial-gradient(var(--canvas-dot) 1px, transparent 1px); background-size: 16px 16px; overflow-x: auto; }
+.cap { display: block; font-family: var(--mono); font-size: 10.5px; color: var(--fg-3); margin-top: 10px; letter-spacing: .02em; white-space: nowrap; }
+.spec { display: inline-flex; flex-direction: column; align-items: flex-start; }
+.row-specs { display: flex; flex-wrap: wrap; gap: 32px 40px; align-items: flex-start; }
+.sub-h { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); margin: 36px 0 16px; }
+.sub-h:first-child { margin-top: 0; }
+
+/* Button matrix */
+.matrix { border-collapse: separate; border-spacing: 0; min-width: 760px; }
+.matrix th { font-family: var(--mono); font-size: 10.5px; font-weight: 500; color: var(--fg-3); text-align: left; padding: 0 28px 14px 0; letter-spacing: .02em; }
+.matrix td { padding: 0 28px 18px 0; vertical-align: middle; }
+.matrix td:first-child { font-size: 13px; font-weight: 600; color: var(--fg-2); padding-right: 32px; white-space: nowrap; }
+.b { --bh: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: var(--bh); padding: 0 16px; border-radius: 3px; border: 1px solid transparent; font: inherit; font-size: 14px; font-weight: 600; letter-spacing: -0.005em; cursor: pointer; white-space: nowrap; transition: background .15s, box-shadow .15s, transform .1s; }
+.b-sm { --bh: 32px; padding: 0 12px; font-size: 13px; }
+.b-lg { --bh: 48px; padding: 0 22px; font-size: 15px; }
+.b-icon { width: var(--bh); padding: 0; }
+.b-primary { background: var(--btn-bg); color: var(--btn-fg); box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 1px 2px rgba(16, 19, 24, .2); }
+.b-primary.is-hover, .b-primary:hover { background: var(--btn-bg-hover); }
+.b-primary.is-active { background: var(--btn-bg-active); transform: translateY(1px); box-shadow: none; }
+.b-brand { background: var(--color-brand-red); color: #fff; box-shadow: 0 1px 0 rgba(255, 255, 255, .15) inset, 0 1px 2px rgba(168, 20, 26, .35); }
+.b-brand.is-hover, .b-brand:hover { background: var(--color-brand-red-hover); }
+.b-brand.is-active { background: var(--color-brand-red-dark); transform: translateY(1px); box-shadow: none; }
+.b-secondary { background: var(--surface); color: var(--fg); border-color: var(--line-strong); box-shadow: 0 1px 2px rgba(16, 19, 24, .06); }
+.b-secondary.is-hover, .b-secondary:hover { background: var(--surface-2); }
+.b-secondary.is-active { background: var(--line); transform: translateY(1px); box-shadow: none; }
+.b-ghost { background: transparent; color: var(--fg); }
+.b-ghost.is-hover, .b-ghost:hover { background: var(--surface-2); }
+.b-ghost.is-active { background: var(--line); }
+.b-danger { background: var(--surface); color: var(--color-status-danger); border-color: var(--danger-line); }
+.b-danger.is-hover, .b-danger:hover { background: var(--color-status-danger); color: #fff; border-color: transparent; }
+.b-danger.is-active { background: #8F1C13; color: #fff; border-color: transparent; }
+.b.is-focus { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--color-brand-red); }
+.b:disabled, .b.is-disabled { background: var(--surface-2); color: var(--fg-3); border-color: transparent; box-shadow: none; cursor: not-allowed; }
+.spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.b-group { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 3px; overflow: hidden; background: var(--surface); }
+.b-group button { height: 36px; padding: 0 14px; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--fg-2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.b-group button:last-child { border-right: 0; }
+.b-group button[aria-pressed="true"] { background: var(--surface-2); color: var(--fg); }
+
+/* Fields */
+.anatomy { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 56px; align-items: center; padding-left: 44px; }
+.anat-field { position: relative; }
+.pin { position: absolute; left: -34px; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--color-brand-red); color: #fff; box-shadow: 0 0 0 3px var(--canvas); }
+.pin::after { content: ""; position: absolute; left: 22px; top: 50%; width: 10px; border-top: 1px dashed var(--color-brand-red); }
+.legend-list { display: grid; gap: 14px; font-size: 14px; }
+.legend-list div { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; }
+.legend-list i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 11px; font-weight: 700; background: var(--color-brand-red); color: #fff; }
+.legend-list small { display: block; color: var(--fg-3); font-size: 13px; }
+.f { display: grid; gap: 6px; width: 260px; }
+.f label, .f .lab { font-size: 13px; font-weight: 600; color: var(--fg); display: flex; justify-content: space-between; }
+.f label .opt { font-weight: 400; color: var(--fg-3); }
+.ctl { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 3px; background: var(--surface); color: var(--fg); font-size: 14px; box-shadow: 0 1px 2px rgba(16, 19, 24, .04) inset; }
+.ctl input { all: unset; flex: 1; min-width: 0; font: inherit; color: inherit; }
+.ctl .ph { color: var(--fg-3); }
+.ctl.is-focus { border-color: var(--color-brand-red); box-shadow: 0 0 0 3px rgba(223, 27, 34, .14); }
+.ctl.is-error { border-color: var(--color-status-danger); box-shadow: 0 0 0 3px rgba(180, 35, 24, .1); }
+.ctl.is-disabled { background: var(--surface-2); color: var(--fg-3); box-shadow: none; }
+.ctl .affix { color: var(--fg-3); font-size: 13px; font-weight: 600; padding-right: 10px; margin-right: 2px; border-right: 1px solid var(--line); height: 100%; display: flex; align-items: center; }
+.ctl .num-in { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.ctl kbd { font-family: var(--mono); font-size: 10.5px; padding: 1px 6px; border: 1px solid var(--line); border-radius: 2px; color: var(--fg-3); background: var(--surface-2); }
+.help { font-size: 12.5px; color: var(--fg-3); }
+.err { font-size: 12.5px; color: var(--color-status-danger); display: flex; gap: 6px; align-items: flex-start; font-weight: 500; }
+.switch { width: 36px; height: 20px; border-radius: 999px; background: var(--line-strong); position: relative; flex: none; }
+.switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .25); transition: left .15s; }
+.switch.on { background: var(--color-brand-red); }
+.switch.on::after { left: 18px; }
+.check { width: 18px; height: 18px; border-radius: 2px; border: 1.5px solid var(--line-strong); background: var(--surface); display: grid; place-items: center; flex: none; }
+.check.on { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+.radio { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: var(--surface); flex: none; display: grid; place-items: center; }
+.radio.on { border-color: var(--btn-bg); }
+.radio.on::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--btn-bg); }
+.opt-row { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.opt-row small { display: block; color: var(--fg-3); font-size: 12.5px; }
+.seg2 { display: inline-flex; padding: 3px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); }
+.seg2 span { padding: 6px 14px; font-size: 13px; font-weight: 600; color: var(--fg-2); border-radius: 2px; }
+.seg2 span.on { background: var(--surface); color: var(--fg); box-shadow: 0 1px 2px rgba(16, 19, 24, .12); }
+
+/* Feedback */
+.c-alert { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 14px; align-items: start; width: min(560px, 100%); padding: 14px 16px; border-radius: 3px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16, 19, 24, .05); position: relative; overflow: hidden; }
+.c-alert::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--c); }
+.c-alert .ic { width: 32px; height: 32px; border-radius: 3px; display: grid; place-items: center; background: var(--t); color: var(--c); }
+.c-alert b { display: block; font-size: 14px; }
+.c-alert p { font-size: 13.5px; color: var(--fg-2); margin-top: 2px; }
+.c-alert .acts { display: flex; gap: 14px; margin-top: 8px; font-size: 13px; font-weight: 600; }
+.c-alert .acts a { color: var(--fg); text-decoration: none; }
+.c-alert .acts a.muted { color: var(--fg-3); font-weight: 500; }
+.c-alert .x { color: var(--fg-3); font-size: 18px; line-height: 1; }
+.toasts { display: grid; gap: 10px; width: min(380px, 100%); }
+.toast2 { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 3px; background: #1B1E23; color: #F3F4F6; font-size: 13.5px; box-shadow: 0 12px 28px -12px rgba(0, 0, 0, .5); }
+.toast2 .tic { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(46, 139, 87, .25); color: #6FD39A; flex: none; }
+.toast2 .tic.warn { background: rgba(201, 138, 30, .25); color: #F4C46B; }
+.toast2 a { margin-left: auto; color: #FF8A8E; font-weight: 600; text-decoration: none; }
+.stepper { display: grid; grid-template-columns: repeat(5, minmax(110px, 1fr)); width: 100%; min-width: 620px; }
+.step { position: relative; display: grid; gap: 8px; justify-items: start; font-size: 13px; padding-right: 12px; }
+.step::before { content: ""; position: absolute; top: 13px; left: 30px; right: 0; height: 2px; background: var(--line); }
+.step:last-child::before { display: none; }
+.step.done::before { background: var(--fg); }
+.step .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--surface); border: 2px solid var(--line-strong); color: var(--fg-3); position: relative; z-index: 1; }
+.step.done .n { background: var(--btn-bg); border-color: var(--btn-bg); color: var(--btn-fg); }
+.step.now .n { border-color: var(--color-brand-red); color: var(--color-brand-red); box-shadow: 0 0 0 5px rgba(223, 27, 34, .14); }
+.step b { font-size: 13px; }
+.step small { color: var(--fg-3); font-size: 12px; display: block; }
+.skel { width: min(560px, 100%); display: grid; gap: 14px; }
+.skel-row { display: grid; grid-template-columns: 32px minmax(0, 1fr) 90px; gap: 14px; align-items: center; }
+.sk { height: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--surface-2) 0%, var(--line) 50%, var(--surface-2) 100%); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
+.sk.round { width: 32px; height: 32px; border-radius: 3px; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* Data display */
+.st { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid transparent; }
+.st i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.p-draft { background: var(--surface-2); color: var(--fg-2); border-color: var(--line); }
+.p-wait { background: var(--color-status-warning-tint); color: var(--color-status-warning-text); border-color: #F1DDB3; }
+.p-ok { background: var(--color-status-success-tint); color: var(--color-status-success-text); border-color: #C7E5D3; }
+.p-no { background: var(--color-status-danger-tint); color: var(--color-status-danger); border-color: #F5CBC6; }
+.p-inv { background: var(--btn-bg); color: var(--btn-fg); }
+.chip-f { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 6px 0 12px; border-radius: 3px; background: var(--surface); border: 1px solid var(--line-strong); font-size: 13px; }
+.chip-f b { font-weight: 600; }
+.chip-f span.k { color: var(--fg-3); }
+.chip-f .xx { width: 20px; height: 20px; border-radius: 2px; display: grid; place-items: center; color: var(--fg-3); }
+.count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; font-size: 11px; font-weight: 700; background: var(--color-brand-red); color: #fff; }
+.count.n { background: var(--surface-2); color: var(--fg-2); border: 1px solid var(--line); }
+.avg { display: flex; }
+.avg .av { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--canvas); margin-left: -8px; font-size: 11px; }
+.avg .av:first-child { margin-left: 0; }
+.avg .more { width: 32px; height: 32px; border-radius: 50%; margin-left: -8px; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--surface); border: 2px solid var(--canvas); box-shadow: 0 0 0 1px var(--line) inset; color: var(--fg-2); }
+.qc { width: 320px; max-width: 100%; border-radius: 4px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16, 19, 24, .05), 0 8px 24px -16px rgba(16, 19, 24, .25); overflow: hidden; }
+.qc .top { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px 0; }
+.qc .id { font-family: var(--mono); font-size: 12px; color: var(--fg-3); }
+.qc .body { padding: 10px 16px 14px; }
+.qc .cust { font-size: 15px; font-weight: 700; }
+.qc .veh2 { display: flex; align-items: center; gap: 6px; color: var(--fg-2); font-size: 13px; margin-top: 4px; }
+.qc .amt { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin-top: 12px; }
+.qc .amt small { font-size: 12px; font-weight: 600; color: var(--fg-3); margin-right: 4px; letter-spacing: 0; }
+.qc .meta { display: flex; gap: 16px; font-size: 12px; color: var(--fg-3); margin-top: 4px; }
+.qc .foot { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-top: 1px solid var(--line); background: var(--surface-2); font-size: 12.5px; color: var(--fg-2); }
+.qc .foot .av { width: 24px; height: 24px; font-size: 10px; border-radius: 50%; }
+.qc .foot .more2 { margin-left: auto; color: var(--fg-3); font-weight: 700; letter-spacing: 1px; }
+.stat2 { width: 240px; padding: 16px; border-radius: 4px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(16, 19, 24, .05); }
+.stat2 small { color: var(--fg-3); font-size: 12.5px; font-weight: 600; }
+.stat2 b { display: block; font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin: 2px 0 6px; font-variant-numeric: tabular-nums; }
+.stat2 .d { font-size: 12px; font-weight: 700; color: var(--color-status-success); }
+.stat2 .d span { color: var(--fg-3); font-weight: 500; }
+.stat2 svg { width: 100%; height: 40px; margin-top: 8px; }
+
+/* Overlays */
+.scrim { position: relative; padding: 36px; border-radius: 4px; background: rgba(16, 19, 24, .55); display: grid; place-items: center; min-width: 0; }
+.dialog { width: 380px; max-width: 100%; border-radius: 4px; background: var(--surface); box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .55); overflow: hidden; }
+.dialog .dh { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 20px 20px 4px; }
+.dialog .dh .ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--color-status-danger-tint); color: var(--color-status-danger); }
+.dialog h4 { font-size: 16px; }
+.dialog p { font-size: 13.5px; color: var(--fg-2); margin-top: 4px; }
+.dialog .df { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 20px; margin-top: 12px; background: var(--surface-2); border-top: 1px solid var(--line); }
+.menu { width: 240px; padding: 6px; border-radius: 4px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 16px 40px -16px rgba(16, 19, 24, .35); font-size: 13.5px; }
+.menu .mi { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 3px; color: var(--fg); }
+.menu .mi.hl { background: var(--surface-2); }
+.menu .mi svg { color: var(--fg-3); }
+.menu .mi kbd { margin-left: auto; font-family: var(--mono); font-size: 10.5px; color: var(--fg-3); }
+.menu .mi.red { color: var(--color-status-danger); }
+.menu .mi.red svg { color: var(--color-status-danger); }
+.menu hr { border: 0; border-top: 1px solid var(--line); margin: 6px 0; }
+.menu .mh { padding: 6px 10px 4px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); }
+
+/* Navigation */
+.utabs { display: flex; gap: 24px; border-bottom: 1px solid var(--line); min-width: 460px; }
+.utabs span { padding: 0 0 12px; font-size: 14px; font-weight: 600; color: var(--fg-3); display: flex; align-items: center; gap: 8px; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.utabs span.on { color: var(--fg); border-color: var(--color-brand-red); }
+.crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--fg-3); }
+.crumbs b { color: var(--fg); font-weight: 600; }
+.pg { display: flex; align-items: center; gap: 4px; }
+.pg span { min-width: 32px; height: 32px; display: grid; place-items: center; border-radius: 3px; font-size: 13px; font-weight: 600; color: var(--fg-2); }
+.pg span.on { background: var(--btn-bg); color: var(--btn-fg); }
+.pg span.arrow { border: 1px solid var(--line-strong); background: var(--surface); }
+@media (max-width: 720px) {
+  .anatomy { grid-template-columns: 1fr; gap: 28px; }
+  .anatomy { padding-left: 38px; }
+  .canvas { padding: 28px 18px; }
+  .sheet-head { padding: 18px; }
+  .tok { justify-content: flex-start; }
+  .scrim { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .spin, .sk { animation: none; } }
+
+/* Example dashboard (laptop) */
+.viewer { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.desk { border-radius: 4px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 80px -40px rgba(16, 19, 24, .45); background: #F3F4F6; color: #1B1E23; font-size: 13px; }
+.desk .chrome { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #E5E7EB; }
+.desk .chrome i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.desk .chrome i:nth-child(1) { background: #F26B5E; } .desk .chrome i:nth-child(2) { background: #F4BE4F; } .desk .chrome i:nth-child(3) { background: #61C554; }
+.desk .url { margin: 0 auto; background: #fff; border-radius: 3px; padding: 4px 14px; font-size: 11.5px; color: #6B7280; font-family: var(--mono); }
+.app { display: grid; grid-template-columns: 228px minmax(0, 1fr); min-height: 760px; }
+.side { background: #14171B; color: #A7AEB8; padding: 18px 14px; display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
+.side .logo { display: flex; align-items: center; gap: 10px; padding: 0 6px 18px; color: #fff; font-weight: 700; }
+.side .logo img { height: 24px; background: #fff; border-radius: 3px; padding: 3px 5px; }
+.side .lbl { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #6B7280; padding: 14px 10px 6px; }
+.side a { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 3px; color: inherit; text-decoration: none; }
+.side a:hover { background: rgba(255, 255, 255, .05); color: #fff; }
+.side a.on { background: rgba(255, 255, 255, .08); color: #fff; }
+.side a.on svg { color: #FF5A5F; }
+.side .count { margin-left: auto; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #D1D5DB; }
+.side .count.red { background: var(--color-brand-red); color: #fff; }
+.side .target { margin-top: auto; padding: 14px; border-radius: 3px; background: linear-gradient(150deg, #23272E, #191C21); border: 1px solid rgba(255, 255, 255, .06); }
+.side .target small { color: #9CA3AF; font-size: 11px; }
+.side .target b { display: block; color: #fff; font-size: 15px; margin: 2px 0 8px; }
+.side .target .bar { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+.side .target .bar i { display: block; height: 100%; width: 68%; background: linear-gradient(90deg, #FF5A5F, #DF1B22); border-radius: 3px; }
+.side .me { display: flex; align-items: center; gap: 10px; padding: 14px 6px 0; margin-top: 12px; border-top: 1px solid rgba(255, 255, 255, .06); }
+.side .me b { display: block; color: #fff; font-size: 13px; }
+.side .me small { font-size: 11px; }
+.main { min-width: 0; display: flex; flex-direction: column; }
+.topbar2 { display: flex; align-items: center; gap: 12px; padding: 12px 24px; background: #fff; border-bottom: 1px solid #E5E7EB; }
+.crumb { font-size: 13px; color: #6B7280; }
+.crumb b { color: #1B1E23; }
+.sbox { margin-left: auto; display: flex; align-items: center; gap: 8px; width: 280px; max-width: 40%; padding: 7px 10px; border-radius: 3px; background: #F3F4F6; color: #9CA3AF; font-size: 12.5px; }
+.sbox kbd { margin-left: auto; font-family: var(--mono); font-size: 10.5px; padding: 1px 6px; border-radius: 3px; background: #fff; border: 1px solid #E5E7EB; color: #6B7280; }
+.tb-icon { position: relative; width: 34px; height: 34px; border-radius: 3px; border: 1px solid #E5E7EB; display: grid; place-items: center; color: #374151; background: #fff; }
+.tb-icon.has-dot::after { content: ""; position: absolute; top: 7px; right: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--color-brand-red); border: 2px solid #fff; }
+.content { padding: 22px 24px 26px; display: grid; gap: 16px; }
+.page-head { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.page-head h4 { font-size: 22px; letter-spacing: -0.02em; }
+.page-head p { color: #6B7280; font-size: 13px; margin-top: 2px; }
+.page-head .actions { margin-left: auto; display: flex; gap: 8px; }
+.chipbtn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 3px; border: 1px solid #E5E7EB; background: #fff; font-size: 12.5px; font-weight: 600; color: #374151; }
+.kpi4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.kcard { background: #fff; border-radius: 3px; padding: 14px 16px; box-shadow: 0 1px 2px rgba(17, 24, 39, .05), 0 0 0 1px #EEF0F2; display: grid; gap: 6px; }
+.kcard .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #6B7280; font-weight: 600; }
+.kcard .ic { width: 28px; height: 28px; border-radius: 3px; display: grid; place-items: center; background: #F3F4F6; color: #374151; }
+.kcard .ic.red { background: #FDE8E9; color: #A8141A; }
+.kcard .val { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; }
+.kcard .val > b { white-space: nowrap; }
+.kcard b { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.kcard .delta { font-size: 11.5px; font-weight: 700; padding: 2px 7px; border-radius: 2px; }
+.delta.up { background: #E7F4EC; color: #1F6B45; } .delta.flat { background: #FDF3E1; color: #7A4F05; }
+.kcard svg.spark { width: 64px; height: 28px; flex: none; }
+.row2 { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 12px; }
+.card2 { background: #fff; border-radius: 3px; padding: 16px; box-shadow: 0 1px 2px rgba(17, 24, 39, .05), 0 0 0 1px #EEF0F2; min-width: 0; }
+.card2 h5 { font-size: 14px; margin: 0; display: flex; align-items: center; gap: 8px; }
+.card2 .sub { color: #6B7280; font-size: 12px; }
+.card2 .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.chart text { font-family: var(--display); font-size: 11px; fill: #6B7280; }
+.chart .grid { stroke: #EEF0F2; }
+.chart .b { fill: #D7DBE0; } .chart .b.now { fill: var(--color-brand-red); }
+.chart .v { font-weight: 700; fill: #1B1E23; }
+.pipe { display: flex; height: 10px; border-radius: 3px; overflow: hidden; gap: 3px; margin: 6px 0 10px; }
+.pipe i { display: block; height: 100%; }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; font-size: 12px; color: #374151; }
+.legend span { display: flex; align-items: center; gap: 6px; }
+.legend span::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
+.legend b { margin-left: auto; font-variant-numeric: tabular-nums; }
+.attn { display: grid; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #F0F1F3; }
+.attn div { display: grid; grid-template-columns: 4px minmax(0, 1fr); gap: 10px; font-size: 12.5px; }
+.attn div::before { content: ""; border-radius: 2px; background: var(--c); }
+.attn small { display: block; color: #6B7280; font-size: 11.5px; }
+.tcard { background: #fff; border-radius: 3px; box-shadow: 0 1px 2px rgba(17, 24, 39, .05), 0 0 0 1px #EEF0F2; overflow: hidden; }
+.tcard .bar { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid #F0F1F3; flex-wrap: wrap; }
+.tcard .bar h5 { font-size: 14px; margin: 0 auto 0 0; }
+.tcard .tabs { background: #F3F4F6; }
+.tcard .tabs button { color: #4B5563; font-size: 12.5px; padding: 6px 12px; }
+.tcard .tabs button[aria-pressed="true"] { background: #fff; color: #1B1E23; }
+.tcard .t-wrap { overflow-x: auto; }
+.tcard table.t th { background: #FAFAFB; color: #6B7280; font-size: 11px; border-color: #F0F1F3; padding: 9px 14px; }
+.tcard table.t td { border-color: #F0F1F3; color: #1B1E23; padding: 11px 14px; vertical-align: middle; font-size: 13px; }
+.tcard tbody tr:hover td { background: #FAFAFB; }
+.tcard td, .tcard th { white-space: nowrap; }
+.tcard .badge { white-space: nowrap; }
+.cust { display: flex; align-items: center; gap: 10px; }
+.cust small { display: block; color: #6B7280; font-size: 11.5px; }
+.vchip { display: inline-block; font-size: 11.5px; padding: 3px 8px; border-radius: 3px; background: #F3F4F6; color: #374151; white-space: nowrap; }
+.kebab { color: #9CA3AF; text-align: center; letter-spacing: 1px; font-weight: 700; }
+.tfoot { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; font-size: 12px; color: #6B7280; border-top: 1px solid #F0F1F3; }
+.pager { display: flex; gap: 6px; }
+.pager span { min-width: 28px; height: 28px; display: grid; place-items: center; border-radius: 3px; border: 1px solid #E5E7EB; color: #374151; font-weight: 600; }
+.pager span.on { background: #1B1E23; color: #fff; border-color: #1B1E23; }
+.example-phone { display: none; }
+.example.is-phone .desk { display: none; }
+.example.is-phone .example-phone { display: block; }
+@media (max-width: 1100px) { .kpi4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .row2 { grid-template-columns: 1fr; } }
+
+/* Developers */
+.code { position: relative; background: var(--code-bg); color: var(--code-fg); border-radius: 3px; padding: 20px 22px; font-family: var(--mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; }
+.code .k { color: #FF8A8E; } .code .v { color: #9CD3B0; } .code .c { color: #7D8590; }
+.copy { position: absolute; top: 12px; right: 12px; font-family: var(--display); }
+
+footer.site { margin-top: 144px; padding-block: 40px; border-top: 1px solid var(--line); color: var(--fg-3); font-size: 13px; }
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+.toast { position: fixed; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translate(-50%, 20px); background: var(--color-neutral-graphite); color: #fff; padding: 10px 16px; border-radius: 3px; font-size: 14px; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; z-index: 30; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 1000px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 56px 64px; }
+  .hero .device { transform: none; }
+  .nav-links { display: none; }
+  .sec-head, .g3, .faces { grid-template-columns: 1fr; }
+  .sec-head { gap: 16px; }
+  .comp { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 720px) {
+  .wrap { padding-inline: 16px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g2, .rules { grid-template-columns: 1fr; }
+  .ramp > div { grid-template-columns: 1fr; gap: 4px; }
+  .app { grid-template-columns: 1fr; }
+  .side { display: none; }
+  .brand span { display: none; }
+  .pill { display: none; }
+  section.block { padding-block: 88px 0; }
+  .sec-head { gap: 16px; margin-bottom: 32px; }
+  .panel, .stage { padding: 22px; }
+  .comp { padding: 36px 0; }
+  .screen { height: 640px; }
+  .copy { position: static; margin-bottom: 12px; }
+  .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .swatch .chip { height: 64px; }
+  .swatch .meta { padding: 10px; font-size: 12px; }
+  .plain { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10M4 16h16M4 16v2m16-2v2M7 19.5h.01M17 19.5h.01M4 10h16"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m21 21-4.3-4.3M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M7 3h7l5 5v13H7zM14 3v5h5M10 13h6M10 17h6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M3 12V4h8l10 10-8 8L3 12zM7.5 7.5h.01"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9 15c0 1 1.3 1.6 3 1.6s3-.7 3-2-1.2-1.6-3-2-3-.7-3-2 1.3-1.9 3-1.9 3 .6 3 1.5M12 6.5v11"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 20V10m6 10V4m6 16v-7m4 7H3"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8 12l3 3 5-6"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3 2 20h20L12 3zM12 10v4M12 17h.01"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9 9l6 6m0-6-6 6"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4l2-2zM10 21h4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M6 3h12v18H6zM9 7h6M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></symbol>
+  <symbol id="i-cog" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.1-1.2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-2-1.2L14 3h-4l-.5 2.6a7 7 0 0 0-2 1.2l-2.4-1-2 3.4 2 1.6a7 7 0 0 0 0 2.4l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 2 1.2L10 21h4l.5-2.6a7 7 0 0 0 2-1.2l2.4 1 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/></symbol>
+  <symbol id="i-approve" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3 8-8M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M9 9h11v11H9zM5 15H4V4h11v1"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="data:image/png;base64,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" alt="ISUZU and KCI"><span>Design System</span></a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#use">Where it is used</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#space">Spacing</a><a href="#components">Components</a><a href="#example">Example</a><a href="#dev">Developers</a>
+    </nav>
+    <div class="nav-end">
+      <span class="pill">v0.1.0</span>
+      <button class="icon-btn" type="button" id="theme" aria-label="Switch light or dark"><svg width="18" height="18"><use href="#i-moon"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><i></i>Kenya Coach Industries · Technology</span>
+      <h1>One look for every <em>KCI</em> screen and document.</h1>
+      <p class="lede">The colours, type, spacing and building blocks behind the Sales Portal, the admin portal, the parts shop and every report KCI sends. Built once, used everywhere.</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="#components">Explore components</a>
+        <a class="btn btn-ghost-dark" href="#example">See a real screen</a>
+      </div>
+      <div class="stats">
+        <div><b id="stat-colours">22</b><span>colour tokens</span></div>
+        <div><b>6</b><span>type sizes</span></div>
+        <div><b>7</b><span>spacing steps</span></div>
+        <div><b>AA</b><span>accessible contrast</span></div>
+      </div>
+    </div>
+    <div class="phone-slot" data-phone></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<section class="block" id="use">
+  <div class="sec-head">
+    <div><div class="kicker">Where it is used</div><h2>Same foundations, different emphasis.</h2></div>
+    <p>Internal tools stay calm and dense for all-day work. Customer-facing sites lead with the brand. Documents follow the same colours and type.</p>
+  </div>
+  <div class="plain"><b>In plain words:</b><span>a shared rulebook, so every KCI system looks like the same company, new screens are quicker to build, and staff find things where they expect them.</span></div>
+  <div class="grid g3">
+    <article class="panel use"><span class="tag">Internal · first</span><h3>Sales Portal</h3><p>Sales reps and coordinators, all day, often on phones in the field. Graphite main buttons, red as an accent, tables that turn into cards.</p><div class="demo"><button class="btn btn-dark btn-sm" type="button">Save quote</button><span class="badge b-warning">Awaiting approval</span></div></article>
+    <article class="panel use"><span class="tag">Internal</span><h3>Admin portal</h3><p>Directors and administrators: approvals, commission settings and users. Destructive actions are dark red and always confirmed.</p><div class="demo"><button class="btn btn-outline btn-sm" type="button">Edit rate</button><button class="btn btn-danger btn-sm" type="button">Remove user</button></div></article>
+    <article class="panel use"><span class="tag">Customer-facing</span><h3>Parts shop</h3><p>kci.co.ke. Brand forward with one red action per page, quick to load on mobile data.</p><div class="demo"><button class="btn btn-red btn-sm" type="button">Request a quote</button></div></article>
+    <article class="panel use"><span class="tag">Customer-facing</span><h3>MotorMatch</h3><p>May carry its own name "by KCI" while sharing KCI spacing, type and components underneath. To be agreed.</p><div class="demo"><span class="badge b-brand">by KCI</span><span class="badge b-success">Verified seller</span></div></article>
+    <article class="panel use"><span class="tag">Documents</span><h3>Reports and PDFs</h3><p>KCI and ISUZU logos on page one, Aptos type, clear tables, one template for every report and brief.</p><div class="demo" style="font-family:Aptos,Calibri,sans-serif;display:block"><b style="color:var(--accent-text)">Summary</b><br><span style="font-size:14px;color:var(--fg-2)">Week 1 is on plan.</span></div></article>
+    <article class="panel use"><span class="tag">Everyday Office</span><h3>Email and slides</h3><p>Graphite text, KCI red for headings and accents only, Aptos in Microsoft 365.</p><div class="demo" style="display:block;font-size:14px"><b>Godwin Ochieng</b><br><span style="color:var(--fg-2)">Technology · Kenya Coach Industries</span></div></article>
+  </div>
+</section>
+
+<section class="block" id="brand">
+  <div class="sec-head">
+    <div><div class="kicker">Brand</div><h2>Two marks, used with care.</h2></div>
+    <p>KCI is the company mark. ISUZU appears alongside it because KCI is an ISUZU dealer.</p>
+  </div>
+  <div class="grid g2">
+    <div class="panel" style="display:grid;place-items:center;min-height:180px;background:#fff"><img src="data:image/png;base64,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" alt="ISUZU and KCI lockup" style="max-width:100%;height:56px"></div>
+    <div class="rules" style="margin-top:0">
+      <div class="rule"><h4><svg width="18" height="18" class="ok-mark"><use href="#i-check"/></svg>Do</h4><ul><li>Use official files only</li><li>KCI left, ISUZU right on documents</li><li>Clear space: the height of the "K"</li></ul></div>
+      <div class="rule"><h4><svg width="18" height="18" class="no-mark"><use href="#i-x"/></svg>Don't</h4><ul><li>Recolour, stretch or add effects</li><li>Put the red mark on red</li><li>Redraw the ISUZU logo</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="colour">
+  <div class="sec-head">
+    <div><div class="kicker">Colour</div><h2>Red is the signature. Graphite does the work.</h2></div>
+    <p>KCI Red is taken from the official logo. Click any colour to copy its token.</p>
+  </div>
+  <div class="plain"><b>In plain words:</b><span>red marks what matters, so it is used sparingly. Green, amber and dark red always mean done, needs attention and went wrong, and always come with words.</span></div>
+  <div class="group-title">Brand</div><div class="swatches" id="sw-brand"></div>
+  <div class="group-title">Neutrals</div><div class="swatches" id="sw-neutral"></div>
+  <div class="group-title">Status</div><div class="swatches" id="sw-status"></div>
+  <div class="rules">
+    <div class="rule"><h4><svg width="18" height="18" class="ok-mark"><use href="#i-check"/></svg>Do</h4><ul><li>Graphite for the main button in internal tools</li><li>KCI Red for the one key action on customer sites</li><li>Pair every status colour with words or an icon</li></ul></div>
+    <div class="rule"><h4><svg width="18" height="18" class="no-mark"><use href="#i-x"/></svg>Don't</h4><ul><li>Use KCI Red for errors; that is Danger</li><li>Fill a screen with red buttons</li><li>Lighten KCI Red for text</li></ul></div>
+  </div>
+</section>
+
+<section class="block" id="type">
+  <div class="sec-head">
+    <div><div class="kicker">Typography</div><h2>Three faces, six sizes.</h2></div>
+    <p>Inter on screens, Aptos in documents, JetBrains Mono for code. A short scale keeps every screen consistent.</p>
+  </div>
+  <div class="panel ramp">
+    <div><span class="lbl">2xl · 30 · 700</span><span style="font-size:30px;font-weight:700;letter-spacing:-0.02em">Quotations</span></div>
+    <div><span class="lbl">xl · 24 · 600</span><span style="font-size:24px;font-weight:600;letter-spacing:-0.01em">Awaiting approval</span></div>
+    <div><span class="lbl">lg · 20 · 600</span><span style="font-size:20px;font-weight:600">Customer details</span></div>
+    <div><span class="lbl">md · 16 · 400</span><span style="font-size:16px">Body text on customer-facing sites.</span></div>
+    <div><span class="lbl">sm · 14 · 400</span><span style="font-size:14px">Body text in the Sales Portal and admin tools.</span></div>
+    <div><span class="lbl">xs · 12 · 400</span><span style="font-size:12px;color:var(--fg-3)">Hints, captions and table footnotes.</span></div>
+    <div><span class="lbl">numbers · tabular</span><span style="font-size:18px;font-weight:600;font-variant-numeric:tabular-nums">KES 6,565,897.00</span></div>
+  </div>
+  <div class="faces">
+    <div class="panel face"><div class="kicker">Screens</div><div class="big">Aa</div><b>Inter</b><p>Built for screens, clear at small sizes, free to use.</p></div>
+    <div class="panel face"><div class="kicker">Documents</div><div class="big" style="font-family:Aptos,Calibri,Carlito,sans-serif;letter-spacing:0">Aa</div><b>Aptos</b><p>The Microsoft 365 default, so Word and PDFs match.</p></div>
+    <div class="panel face"><div class="kicker">Code</div><div class="big" style="font-family:var(--mono);letter-spacing:0">{ }</div><b>JetBrains Mono</b><p>Easy to tell 0 from O and 1 from l.</p></div>
+  </div>
+</section>
+
+<section class="block" id="space">
+  <div class="sec-head">
+    <div><div class="kicker">Spacing and layout</div><h2>Steps of four. Phone first.</h2></div>
+    <p>Every gap is a step on one scale, so screens feel tidy. Layouts rearrange for phones, because sales reps work in the field.</p>
+  </div>
+  <div class="grid g2">
+    <div class="panel" id="space-scale"></div>
+    <div class="panel">
+      <div class="t-wrap"><table class="t">
+        <thead><tr><th>Screen</th><th>Width</th><th>Layout</th></tr></thead>
+        <tbody>
+          <tr><td>Phone</td><td>under 640 px</td><td>One column, tables become cards</td></tr>
+          <tr><td>Tablet</td><td>640 to 1023 px</td><td>Two columns where useful</td></tr>
+          <tr><td>Laptop</td><td>1024 px and up</td><td>Side navigation, full tables</td></tr>
+        </tbody>
+      </table></div>
+      <div class="radius-demo" style="margin-top:20px">
+        <div style="border-radius: 2px">sm 2</div><div style="border-radius: 3px">md 4</div><div style="border-radius: 4px">lg 8</div><div style="border-radius: 999px">pill</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="components">
+  <div class="sec-head">
+    <div><div class="kicker">Components</div><h2>Building blocks, built once.</h2></div>
+    <p>Each component is drawn here in every state it can be in, with the tokens it uses. Build it once, test it once, use it everywhere.</p>
+  </div>
+
+  <div class="sheets">
+
+  <article class="sheet">
+    <div class="sheet-head"><div><h3>Button</h3><p>One primary action per view. Labels say exactly what happens. Destructive actions stay quiet until hovered, then confirm.</p></div>
+      <div class="tok"><code>radius.md 3</code><code>neutral.graphite</code><code>brand.red</code><code>space.16</code><code>font-weight.semibold</code></div></div>
+    <div class="canvas">
+      <table class="matrix">
+        <thead><tr><th></th><th>Default</th><th>Hover</th><th>Pressed</th><th>Focus</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr><td>Primary</td><td><button class="b b-primary" type="button">Save quote</button></td><td><button class="b b-primary is-hover" type="button">Save quote</button></td><td><button class="b b-primary is-active" type="button">Save quote</button></td><td><button class="b b-primary is-focus" type="button">Save quote</button></td><td><button class="b b-primary" type="button" disabled>Save quote</button></td></tr>
+          <tr><td>Brand</td><td><button class="b b-brand" type="button">Request a quote</button></td><td><button class="b b-brand is-hover" type="button">Request a quote</button></td><td><button class="b b-brand is-active" type="button">Request a quote</button></td><td><button class="b b-brand is-focus" type="button">Request a quote</button></td><td><button class="b b-brand" type="button" disabled>Request a quote</button></td></tr>
+          <tr><td>Secondary</td><td><button class="b b-secondary" type="button">Preview PDF</button></td><td><button class="b b-secondary is-hover" type="button">Preview PDF</button></td><td><button class="b b-secondary is-active" type="button">Preview PDF</button></td><td><button class="b b-secondary is-focus" type="button">Preview PDF</button></td><td><button class="b b-secondary" type="button" disabled>Preview PDF</button></td></tr>
+          <tr><td>Ghost</td><td><button class="b b-ghost" type="button">Cancel</button></td><td><button class="b b-ghost is-hover" type="button">Cancel</button></td><td><button class="b b-ghost is-active" type="button">Cancel</button></td><td><button class="b b-ghost is-focus" type="button">Cancel</button></td><td><button class="b b-ghost" type="button" disabled>Cancel</button></td></tr>
+          <tr><td>Destructive</td><td><button class="b b-danger" type="button">Delete quote</button></td><td><button class="b b-danger is-hover" type="button">Delete quote</button></td><td><button class="b b-danger is-active" type="button">Delete quote</button></td><td><button class="b b-danger is-focus" type="button">Delete quote</button></td><td><button class="b b-danger" type="button" disabled>Delete quote</button></td></tr>
+        </tbody>
+      </table>
+      <div class="sub-h">Sizes, icons and loading</div>
+      <div class="row-specs">
+        <div class="spec"><button class="b b-primary b-sm" type="button">Small</button><span class="cap">size.sm · 32</span></div>
+        <div class="spec"><button class="b b-primary" type="button">Medium</button><span class="cap">size.md · 40 · default</span></div>
+        <div class="spec"><button class="b b-primary b-lg" type="button">Large</button><span class="cap">size.lg · 48 · touch</span></div>
+        <div class="spec"><button class="b b-primary" type="button"><svg width="16" height="16"><use href="#i-plus"/></svg>New quote</button><span class="cap">leading icon</span></div>
+        <div class="spec"><button class="b b-secondary b-icon" type="button" aria-label="Download"><svg width="16" height="16"><use href="#i-dl"/></svg></button><span class="cap">icon only · label in aria</span></div>
+        <div class="spec"><button class="b b-primary" type="button" aria-busy="true"><span class="spin"></span>Saving</button><span class="cap">loading · width held</span></div>
+        <div class="spec"><div class="b-group" role="group" aria-label="View"><button type="button" aria-pressed="true"><svg width="14" height="14"><use href="#i-doc"/></svg>List</button><button type="button" aria-pressed="false"><svg width="14" height="14"><use href="#i-chart"/></svg>Board</button><button type="button" aria-pressed="false"><svg width="14" height="14"><use href="#i-cal"/></svg>Calendar</button></div><span class="cap">button group</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-head"><div><h3>Form field</h3><p>Labels sit above, help below, and errors say how to fix the problem. Money is entered with its currency and aligned like a ledger.</p></div>
+      <div class="tok"><code>radius.md 3</code><code>neutral.line</code><code>status.danger</code><code>font-size.sm 14</code></div></div>
+    <div class="canvas">
+      <div class="sub-h">Anatomy</div>
+      <div class="anatomy">
+        <div class="anat-field">
+          <div class="f" style="width:100%">
+            <span class="pin" style="top:-2px">1</span>
+            <label for="a1">Customer name <span class="opt">Required</span></label>
+            <span class="pin" style="top:28px">2</span>
+            <div class="ctl is-focus"><input id="a1" value="Example Transport Ltd"></div>
+            <span class="pin" style="top:74px">3</span>
+            <span class="help">As it appears on the KRA PIN certificate</span>
+          </div>
+        </div>
+        <div class="legend-list">
+          <div><i>1</i><span><b>Label</b><small>Plain words, above the field. Mark what is optional, not what is required, when most fields are required.</small></span></div>
+          <div><i>2</i><span><b>Field</b><small>40 px tall, 3 px corners, red focus ring at 14% opacity.</small></span></div>
+          <div><i>3</i><span><b>Help or error</b><small>Help in muted grey. An error replaces it, in Danger, with the fix.</small></span></div>
+        </div>
+      </div>
+      <div class="sub-h">States</div>
+      <div class="row-specs">
+        <div class="spec"><div class="f"><span class="lab">Vehicle model</span><div class="ctl"><span class="ph">Choose a model</span></div></div><span class="cap">default</span></div>
+        <div class="spec"><div class="f"><span class="lab">Vehicle model</span><div class="ctl is-focus"><span>Bus body, 51 seater</span></div></div><span class="cap">focus</span></div>
+        <div class="spec"><div class="f"><span class="lab">Discount</span><div class="ctl is-error"><span class="num-in" style="flex:1">12 %</span></div><span class="err"><svg width="14" height="14" style="flex:none;margin-top:1px"><use href="#i-warn"/></svg>Above 10% needs director approval.</span></div><span class="cap">error</span></div>
+        <div class="spec"><div class="f"><span class="lab">Sales rep</span><div class="ctl is-disabled"><span>Amina W.</span></div></div><span class="cap">read only</span></div>
+      </div>
+      <div class="sub-h">Inputs for KCI data</div>
+      <div class="row-specs">
+        <div class="spec"><div class="f"><span class="lab">Agreed price</span><div class="ctl"><span class="affix">KES</span><span class="num-in" style="flex:1">6,565,897.00</span></div></div><span class="cap">money · prefix · tabular</span></div>
+        <div class="spec"><div class="f"><span class="lab">Find a quote</span><div class="ctl"><svg width="16" height="16" style="color:var(--fg-3)"><use href="#i-search"/></svg><span class="ph" style="flex:1">Customer or Q-number</span><kbd>/</kbd></div></div><span class="cap">search · shortcut</span></div>
+        <div class="spec"><div class="f"><span class="lab">Delivery date</span><div class="ctl"><svg width="16" height="16" style="color:var(--fg-3)"><use href="#i-cal"/></svg><span>14 Nov 2026</span></div></div><span class="cap">date · unambiguous</span></div>
+      </div>
+      <div class="sub-h">Choices</div>
+      <div class="row-specs">
+        <div class="spec"><div class="opt-row"><span class="switch on"></span><span>Email a copy to the customer</span></div><span class="cap">switch · on</span></div>
+        <div class="spec"><div class="opt-row"><span class="switch"></span><span>Include delivery</span></div><span class="cap">switch · off</span></div>
+        <div class="spec"><div class="opt-row"><span class="check on"><svg width="12" height="12"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Staff quote<small>No eTIMS upload needed</small></span></div><span class="cap">checkbox · checked</span></div>
+        <div class="spec"><div class="opt-row"><span class="radio on"></span><span>Cash</span><span class="radio" style="margin-left:14px"></span><span>Financed</span></div><span class="cap">radio group</span></div>
+        <div class="spec"><div class="seg2"><span class="on">Month</span><span>Quarter</span><span>Year</span></div><span class="cap">segmented control</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-head"><div><h3>Feedback</h3><p>Tell people what happened and what to do next. Inline messages for the page, toasts for quick confirmations, skeletons while loading.</p></div>
+      <div class="tok"><code>status.*</code><code>status.*-tint</code><code>shadow.md</code><code>radius.md 3</code></div></div>
+    <div class="canvas">
+      <div class="sub-h">Quote lifecycle</div>
+      <div style="overflow-x:auto"><div class="stepper">
+        <div class="step done"><span class="n"><svg width="12" height="12"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Draft</b><small>3 Oct, 09:12</small></span></div>
+        <div class="step done"><span class="n"><svg width="12" height="12"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Submitted</b><small>5 Oct, 14:40</small></span></div>
+        <div class="step now"><span class="n">3</span><span><b>Director approval</b><small>Waiting 3 days</small></span></div>
+        <div class="step"><span class="n">4</span><span><b>Invoiced</b><small>eTIMS</small></span></div>
+        <div class="step"><span class="n">5</span><span><b>Delivered</b><small>Claim opens</small></span></div>
+      </div></div>
+      <div class="sub-h">Inline messages</div>
+      <div style="display:grid;gap:12px">
+        <div class="c-alert" style="--c:var(--color-status-warning);--t:var(--color-status-warning-tint)"><span class="ic"><svg width="16" height="16"><use href="#i-warn"/></svg></span><div><b>Q4 commission rates are not set</b><p>The estimator cannot calculate October claims until they are added.</p><div class="acts"><a href="#components">Add rates</a><a class="muted" href="#components">Remind me later</a></div></div><span class="x" aria-hidden="true">&times;</span></div>
+        <div class="c-alert" style="--c:var(--color-status-danger);--t:var(--color-status-danger-tint)"><span class="ic"><svg width="16" height="16"><use href="#i-x"/></svg></span><div><b>The quote was not saved</b><p>The connection dropped. Your changes are kept on this device.</p><div class="acts"><a href="#components">Try again</a></div></div><span class="x" aria-hidden="true">&times;</span></div>
+      </div>
+      <div class="sub-h">Toasts and loading</div>
+      <div class="row-specs">
+        <div class="toasts">
+          <div class="toast2"><span class="tic"><svg width="12" height="12"><path d="M2 6.5 5 9l5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quote Q-1024 sent to Example Transport<a href="#components">View</a></div>
+          <div class="toast2"><span class="tic warn">!</span>Quote Q-1021 deleted<a href="#components">Undo</a></div>
+        </div>
+        <div class="skel" aria-label="Loading example">
+          <div class="skel-row"><span class="sk round"></span><span style="display:grid;gap:8px"><span class="sk" style="width:70%"></span><span class="sk" style="width:40%"></span></span><span class="sk"></span></div>
+          <div class="skel-row"><span class="sk round"></span><span style="display:grid;gap:8px"><span class="sk" style="width:55%"></span><span class="sk" style="width:35%"></span></span><span class="sk"></span></div>
+          <div class="skel-row"><span class="sk round"></span><span style="display:grid;gap:8px"><span class="sk" style="width:62%"></span><span class="sk" style="width:30%"></span></span><span class="sk"></span></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-head"><div><h3>Data display</h3><p>Status always carries a word. Cards lead with who and how much; secondary detail steps back.</p></div>
+      <div class="tok"><code>radius.pill</code><code>radius.lg 4</code><code>font-variant tabular-nums</code></div></div>
+    <div class="canvas">
+      <div class="sub-h">Status, counts and filters</div>
+      <div class="row-specs">
+        <div class="spec"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="st p-draft"><i></i>Draft</span><span class="st p-wait"><i></i>Awaiting approval</span><span class="st p-ok"><i></i>Approved</span><span class="st p-no"><i></i>Rejected</span><span class="st p-inv"><i></i>Invoiced</span></div><span class="cap">quote status · one colour per meaning</span></div>
+        <div class="spec"><div style="display:flex;gap:8px;align-items:center"><span class="count">2</span><span class="count n">12</span><span class="count">99+</span></div><span class="cap">counts</span></div>
+        <div class="spec"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip-f"><span class="k">Status</span><b>Awaiting</b><span class="xx">&times;</span></span><span class="chip-f"><span class="k">Body</span><b>Bus, 51 seater</b><span class="xx">&times;</span></span></div><span class="cap">filter chips · removable</span></div>
+        <div class="spec"><div class="avg"><span class="av c1">AW</span><span class="av c2">JK</span><span class="av c3">MO</span><span class="av c4">PN</span><span class="more">+3</span></div><span class="cap">avatar group · team</span></div>
+      </div>
+      <div class="sub-h">Cards</div>
+      <div class="row-specs">
+        <div class="spec">
+          <div class="qc">
+            <div class="top"><span class="id">Q-1023</span><span class="st p-wait"><i></i>Awaiting approval</span></div>
+            <div class="body"><div class="cust">Sample Logistics</div><div class="veh2"><svg width="15" height="15"><use href="#i-bus"/></svg>Bus body, 51 seater · Mombasa</div><div class="amt"><small>KES</small>4,100,000.00</div><div class="meta"><span>Valid to 4 Nov 2026</span><span>Discount 4%</span></div></div>
+            <div class="foot"><span class="av c1">AW</span>Amina W. · updated 2 h ago<span class="more2">&middot;&middot;&middot;</span></div>
+          </div>
+          <span class="cap">quote card</span>
+        </div>
+        <div class="spec">
+          <div class="stat2"><small>Approved value · October</small><b>KES 48.2M</b><span class="d">+18% <span>vs September</span></span>
+            <svg viewBox="0 0 200 40" preserveAspectRatio="none"><path d="M0 34 L40 30 L80 24 L120 26 L160 14 L200 6 L200 40 L0 40 Z" fill="rgba(223,27,34,.12)"/><polyline points="0,34 40,30 80,24 120,26 160,14 200,6" fill="none" stroke="#DF1B22" stroke-width="2" stroke-linejoin="round"/><circle cx="200" cy="6" r="3" fill="#DF1B22"/></svg></div>
+          <span class="cap">stat card · trend</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="sheet">
+    <div class="sheet-head"><div><h3>Overlays and navigation</h3><p>Dialogs confirm anything that cannot be undone. Menus group actions and keep the destructive one last.</p></div>
+      <div class="tok"><code>shadow.md</code><code>radius.lg 4</code><code>brand.red</code></div></div>
+    <div class="canvas">
+      <div class="row-specs">
+        <div class="spec" style="flex:1 1 420px">
+          <div class="scrim" style="width:100%">
+            <div class="dialog" role="dialog" aria-label="Delete quote example">
+              <div class="dh"><span class="ic"><svg width="18" height="18"><use href="#i-warn"/></svg></span><div><h4>Delete quote Q-1021?</h4><p>Test Coaches Ltd, KES 9,120,300.00. The quote and its PDF are removed for everyone. This cannot be undone.</p></div></div>
+              <div class="df"><button class="b b-ghost b-sm" type="button">Keep quote</button><button class="b b-sm" type="button" style="background:var(--color-status-danger);color:#fff">Delete quote</button></div>
+            </div>
+          </div>
+          <span class="cap">confirmation dialog</span>
+        </div>
+        <div class="spec">
+          <div class="menu" role="menu" aria-label="Quote actions example">
+            <div class="mh">Quote Q-1023</div>
+            <div class="mi hl"><svg width="16" height="16"><use href="#i-doc"/></svg>Open<kbd>Enter</kbd></div>
+            <div class="mi"><svg width="16" height="16"><use href="#i-dl"/></svg>Download PDF<kbd>D</kbd></div>
+            <div class="mi"><svg width="16" height="16"><use href="#i-copy"/></svg>Duplicate</div>
+            <hr>
+            <div class="mi red"><svg width="16" height="16"><use href="#i-x"/></svg>Delete</div>
+          </div>
+          <span class="cap">menu · destructive last</span>
+        </div>
+      </div>
+      <div class="sub-h">Navigation</div>
+      <div class="row-specs">
+        <div class="spec" style="overflow-x:auto;max-width:100%"><div class="utabs"><span class="on">All quotes <span class="count n">12</span></span><span>Awaiting <span class="count">2</span></span><span>Approved</span><span>Drafts</span></div><span class="cap">tabs · underline · counts</span></div>
+        <div class="spec"><div class="crumbs">Sales <span>/</span> Quotes <span>/</span> <b>Q-1023</b></div><span class="cap">breadcrumbs</span></div>
+        <div class="spec"><div class="pg"><span class="arrow">&lsaquo;</span><span class="on">1</span><span>2</span><span>3</span><span>&hellip;</span><span>8</span><span class="arrow">&rsaquo;</span></div><span class="cap">pagination</span></div>
+      </div>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<section class="block example" id="example">
+  <div class="sec-head">
+    <div><div class="kicker">Example</div><h2>The Sales Portal, rebuilt with the system.</h2></div>
+    <p>A sketch of how the quotes screen could look. Switch views to see the same screen on a laptop and on a sales rep's phone. All names and figures are made up.</p>
+  </div>
+  <div class="viewer"><div class="tabs" role="group" aria-label="Preview size"><button type="button" data-view="desk" aria-pressed="true">Laptop</button><button type="button" data-view="phone" aria-pressed="false">Phone</button></div></div>
+  <div class="desk">
+    <div class="chrome"><i></i><i></i><i></i><span class="url">sales.kci.co.ke/quotes</span></div>
+    <div class="app">
+      <aside class="side">
+        <div class="logo"><img src="data:image/png;base64,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" alt="KCI">Sales Portal</div>
+        <div class="lbl">Workspace</div>
+        <a href="#example"><svg width="18" height="18"><use href="#i-home"/></svg>Overview</a>
+        <a class="on" href="#example"><svg width="18" height="18"><use href="#i-doc"/></svg>Quotes<span class="count">12</span></a>
+        <a href="#example"><svg width="18" height="18"><use href="#i-tag"/></svg>Price guide</a>
+        <a href="#example"><svg width="18" height="18"><use href="#i-calc"/></svg>Estimator</a>
+        <a href="#example"><svg width="18" height="18"><use href="#i-coin"/></svg>Claims<span class="count">3</span></a>
+        <a href="#example"><svg width="18" height="18"><use href="#i-chart"/></svg>Reports</a>
+        <div class="lbl">Approvals</div>
+        <a href="#example"><svg width="18" height="18"><use href="#i-approve"/></svg>Awaiting me<span class="count red">2</span></a>
+        <a href="#example"><svg width="18" height="18"><use href="#i-cog"/></svg>Settings</a>
+        <div class="target"><small>October target</small><b>KES 48.2M of 71M</b><div class="bar"><i></i></div></div>
+        <div class="me"><div class="av sm c1">AW</div><div><b>Amina W.</b><small>Sales rep · Nairobi</small></div></div>
+      </aside>
+      <div class="main">
+        <div class="topbar2">
+          <div class="crumb">Sales / <b>Quotes</b></div>
+          <div class="sbox"><svg width="15" height="15"><use href="#i-search"/></svg>Search quotes, customers<kbd>/</kbd></div>
+          <div class="tb-icon has-dot"><svg width="17" height="17"><use href="#i-bell"/></svg></div>
+          <div class="av sm c1">AW</div>
+        </div>
+        <div class="content">
+          <div class="page-head">
+            <div><h4>Good morning, Amina</h4><p>2 quotes are waiting for approval, and Q4 commission rates are not set yet.</p></div>
+            <div class="actions"><span class="chipbtn"><svg width="15" height="15"><use href="#i-cal"/></svg>Oct 2026</span><span class="chipbtn"><svg width="15" height="15"><use href="#i-dl"/></svg>Export</span><a class="btn btn-dark btn-sm" href="#example"><svg width="15" height="15"><use href="#i-plus"/></svg>New quote</a></div>
+          </div>
+          <div class="kpi4">
+            <div class="kcard"><div class="top"><span class="ic"><svg width="15" height="15"><use href="#i-doc"/></svg></span>Quotes raised</div><div class="val"><b>12</b><svg class="spark" viewBox="0 0 84 30"><polyline fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,24 18,20 34,22 50,14 66,16 82,6"/></svg></div><span><span class="delta up">+3 vs Sep</span></span></div>
+            <div class="kcard"><div class="top"><span class="ic red"><svg width="15" height="15"><use href="#i-coin"/></svg></span>Approved value</div><div class="val"><b>KES 48.2M</b><svg class="spark" viewBox="0 0 84 30"><polyline fill="none" stroke="#DF1B22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,26 18,22 34,18 50,19 66,10 82,4"/></svg></div><span><span class="delta up">+18% vs Sep</span></span></div>
+            <div class="kcard"><div class="top"><span class="ic"><svg width="15" height="15"><use href="#i-approve"/></svg></span>Awaiting approval</div><div class="val"><b>2</b><svg class="spark" viewBox="0 0 84 30"><polyline fill="none" stroke="#C98A1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,12 18,16 34,10 50,18 66,14 82,16"/></svg></div><span><span class="delta flat">Oldest 3 days</span></span></div>
+            <div class="kcard"><div class="top"><span class="ic"><svg width="15" height="15"><use href="#i-chart"/></svg></span>Conversion</div><div class="val"><b>58%</b><svg class="spark" viewBox="0 0 84 30"><polyline fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="2,20 18,18 34,19 50,15 66,14 82,12"/></svg></div><span><span class="delta flat">Target 60%</span></span></div>
+          </div>
+          <div class="row2">
+            <div class="card2">
+              <div class="head"><div><h5>Approved value by week</h5><span class="sub">KES millions, October 2026</span></div><span class="badge b-brand">Week 41 in progress</span></div>
+              <svg class="chart" viewBox="0 0 520 200" width="100%" role="img" aria-label="Approved value by week: W37 8.2, W38 11.5, W39 9.4, W40 12.1, W41 7.0 million shillings" id="chart"></svg>
+            </div>
+            <div class="card2">
+              <div class="head"><div><h5>Pipeline</h5><span class="sub">12 quotes this month</span></div></div>
+              <div class="pipe"><i style="flex:3;background:#9CA3AF"></i><i style="flex:2;background:#C98A1E"></i><i style="flex:6;background:#2E8B57"></i><i style="flex:1;background:#23272E"></i></div>
+              <div class="legend"><span style="--c:#9CA3AF">Draft<b>3</b></span><span style="--c:#C98A1E">Awaiting<b>2</b></span><span style="--c:#2E8B57">Approved<b>6</b></span><span style="--c:#23272E">Invoiced<b>1</b></span></div>
+              <div class="attn">
+                <div style="--c:#C98A1E"><span><b>Q-1023 waiting 3 days</b><small>Sample Logistics · KES 4.10M</small></span></div>
+                <div style="--c:#B42318"><span><b>Q4 commission rates missing</b><small>Set them so the estimator keeps working</small></span></div>
+                <div style="--c:#4A5A6A"><span><b>Price guide updated</b><small>October list prices are live</small></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="tcard">
+            <div class="bar"><h5>Recent quotes</h5><div class="tabs" role="group" aria-label="Filter quotes"><button type="button" aria-pressed="true">All</button><button type="button" aria-pressed="false">Awaiting</button><button type="button" aria-pressed="false">Approved</button><button type="button" aria-pressed="false">Draft</button></div></div>
+            <div class="t-wrap"><table class="t"><thead><tr><th>Quote</th><th>Customer</th><th>Vehicle</th><th>Date</th><th>Status</th><th class="num">Amount (KES)</th><th></th></tr></thead><tbody id="q-rows"></tbody></table></div>
+            <div class="tfoot"><span>Showing 1 to 4 of 12</span><div class="pager"><span>&lsaquo;</span><span class="on">1</span><span>2</span><span>3</span><span>&rsaquo;</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="example-phone" data-phone></div>
+</section>
+
+<section class="block" id="writing">
+  <div class="sec-head">
+    <div><div class="kicker">Writing</div><h2>Say it the way a colleague would.</h2></div>
+    <p>KCI's own words, short sentences, and always the next step.</p>
+  </div>
+  <div class="rules" style="margin-top:0">
+    <div class="rule"><h4><svg width="18" height="18" class="ok-mark"><use href="#i-check"/></svg>Write</h4><ul><li>"Quote sent to Example Transport Ltd."</li><li>"Check your connection and try again."</li><li>Quote, claim, price guideline, sales rep</li></ul></div>
+    <div class="rule"><h4><svg width="18" height="18" class="no-mark"><use href="#i-x"/></svg>Avoid</h4><ul><li>"Error 3XT"</li><li>"Invalid input"</li><li>Labels like "Cust_nm"</li></ul></div>
+  </div>
+</section>
+
+<section class="block" id="access">
+  <div class="sec-head">
+    <div><div class="kicker">Accessibility</div><h2>Usable by everyone, on any device.</h2></div>
+    <p>Readable contrast, full keyboard use, large touch targets and meaning that never depends on colour alone.</p>
+  </div>
+  <div class="grid g2">
+    <div class="panel"><b>Readable</b><p style="color:var(--fg-2);margin-top:6px">Every text colour meets WCAG 2.1 AA. Each swatch above says whether it can be used for text.</p></div>
+    <div class="panel"><b>Keyboard</b><p style="color:var(--fg-2);margin-top:6px">Everything works with Tab and Enter, with a clear red focus ring. Try it on this page.</p></div>
+    <div class="panel"><b>Touch</b><p style="color:var(--fg-2);margin-top:6px">Buttons and fields are at least 44 px tall, easy to tap on a phone.</p></div>
+    <div class="panel"><b>Not colour alone</b><p style="color:var(--fg-2);margin-top:6px">Status always has words and a shape, as in the badges and messages above.</p></div>
+  </div>
+</section>
+
+<section class="block" id="dev">
+  <div class="sec-head">
+    <div><div class="kicker">For developers</div><h2>Use the tokens. Never a hex code.</h2></div>
+    <p>Change a value once in <code>tokens.json</code> and every system follows. Source: the <code>kci-design-system</code> repository on KCI's GitHub.</p>
+  </div>
+  <div class="code"><button class="btn btn-ghost-dark btn-sm copy" type="button" id="copy-css"><svg width="14" height="14"><use href="#i-copy"/></svg>Copy tokens.css</button><span class="c">/* Import once, then use the variables */</span>
+<span class="k">@import</span> <span class="v">"tokens/tokens.css"</span>;
+
+<span class="k">.button-primary</span> {
+  background: <span class="v">var(--color-neutral-graphite)</span>;
+  color: <span class="v">var(--color-neutral-white)</span>;
+  padding: <span class="v">var(--space-8) var(--space-16)</span>;
+  border-radius: <span class="v">var(--radius-md)</span>;
+}</div>
+</section>
+
+<section class="block" id="words">
+  <div class="sec-head">
+    <div><div class="kicker">Glossary</div><h2>Words used here.</h2></div>
+    <p>Plain meanings for the technical terms on this page.</p>
+  </div>
+  <div class="panel t-wrap"><table class="t"><tbody>
+    <tr><td><b>Design system</b></td><td>The shared rulebook and building blocks for how KCI software looks and behaves</td></tr>
+    <tr><td><b>Design token</b></td><td>One named design value, such as "KCI Red", stored where software can read it</td></tr>
+    <tr><td><b>Component</b></td><td>A reusable building block, such as a button or form field</td></tr>
+    <tr><td><b>Contrast ratio</b></td><td>How much text stands out from its background; 4.5 or more is the standard</td></tr>
+    <tr><td><b>WCAG</b></td><td>The international accessibility standard for websites and apps</td></tr>
+    <tr><td><b>Breakpoint</b></td><td>The screen width where a layout changes, for example from phone to tablet</td></tr>
+  </tbody></table></div>
+</section>
+
+</div>
+</main>
+
+<footer class="site"><div class="wrap"><span>KCI Design System v0.1.0 · Draft · generated 9 Oct 2026 from <code>tokens.json</code></span><span>Internal · Kenya Coach Industries</span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<template id="phone-tpl">
+  <div class="device"><div class="screen">
+    <div class="notch"></div>
+    <div class="statusbar"><span>9:41</span><span>5G</span></div>
+    <div class="m-head"><div class="av c1">AW</div><div class="who"><small>Good morning</small><b>Amina W.</b></div><div class="m-bell"><svg width="18" height="18"><use href="#i-bell"/></svg></div></div>
+    <div class="m-card"><small>October approved value</small><div class="big">KES 48.2M</div><div class="bar"><i></i></div><div class="row"><span>68% of target</span><span>12 quotes · 2 awaiting</span></div></div>
+    <div class="m-actions"><div><span><svg width="20" height="20"><use href="#i-plus"/></svg></span>New quote</div><div><span><svg width="20" height="20"><use href="#i-tag"/></svg></span>Prices</div><div><span><svg width="20" height="20"><use href="#i-calc"/></svg></span>Estimator</div><div><span><svg width="20" height="20"><use href="#i-coin"/></svg></span>Claims</div></div>
+    <div class="m-alert"><svg width="16" height="16"><use href="#i-warn"/></svg>Q-1023 has waited 3 days for approval</div>
+    <div class="m-sec"><b>Recent quotes</b><a href="#example">See all</a></div>
+    <div class="m-list" data-cards></div>
+    <div class="m-nav"><div class="on"><svg width="20" height="20"><use href="#i-home"/></svg>Home</div><div><svg width="20" height="20"><use href="#i-doc"/></svg>Quotes</div><div class="plus"><span><svg width="20" height="20"><use href="#i-plus"/></svg></span></div><div><svg width="20" height="20"><use href="#i-coin"/></svg>Claims</div><div><svg width="20" height="20"><use href="#i-chart"/></svg>Reports</div></div>
+  </div></div>
+</template>
+
+<script>
+const TOKENS = {"color": {"brand": {"red": "#DF1B22", "red-hover": "#C4161D", "red-dark": "#A8141A", "red-deepest": "#6E0D11", "red-tint": "#FDE8E9"}, "neutral": {"white": "#FFFFFF", "graphite": "#23272E", "steel": "#4A5A6A", "steel-tint": "#E8EDF2", "muted": "#5F6166", "line": "#DCDDD8", "paper": "#F6F6F4"}, "status": {"warning": "#C98A1E", "warning-text": "#7A4F05", "warning-tint": "#FDF3E1", "success": "#2E8B57", "success-text": "#1F6B45", "success-tint": "#E7F4EC", "danger": "#B42318", "danger-tint": "#FDECEA", "info": "#4A5A6A", "info-tint": "#E8EDF2"}}, "font": {"ui": "Inter", "doc": "Aptos, Calibri", "mono": "JetBrains Mono"}, "font-size": {"xs": 12, "sm": 14, "md": 16, "lg": 20, "xl": 24, "2xl": 30}, "font-weight": {"regular": 400, "medium": 500, "semibold": 600, "bold": 700}, "line-height": {"tight": 1.25, "normal": 1.5}, "space": [4, 8, 12, 16, 24, 32, 48], "radius": {"sm": 2, "md": 3, "lg": 4, "pill": 999}, "shadow": {"sm": "0 1px 2px rgba(35, 39, 46, 0.08)", "md": "0 4px 12px rgba(35, 39, 46, 0.12)"}, "breakpoint": {"sm": 640, "md": 768, "lg": 1024, "xl": 1280}};
+const TOKENS_CSS = "/*\n * Hand-synced from tokens.json (see design/tokens/README.md). If the two\n * disagree, tokens.json wins.\n */\n\n:root {\n  --color-brand-red: #DF1B22;\n  --color-brand-red-hover: #C4161D;\n  --color-brand-red-dark: #A8141A;\n  --color-brand-red-deepest: #6E0D11;\n  --color-brand-red-tint: #FDE8E9;\n\n  --color-neutral-white: #FFFFFF;\n  --color-neutral-graphite: #23272E;\n  --color-neutral-steel: #4A5A6A;\n  --color-neutral-steel-tint: #E8EDF2;\n  --color-neutral-muted: #5F6166;\n  --color-neutral-line: #DCDDD8;\n  --color-neutral-paper: #F6F6F4;\n\n  --color-status-warning: #C98A1E;\n  --color-status-warning-text: #7A4F05;\n  --color-status-warning-tint: #FDF3E1;\n  --color-status-success: #2E8B57;\n  --color-status-success-text: #1F6B45;\n  --color-status-success-tint: #E7F4EC;\n  --color-status-danger: #B42318;\n  --color-status-danger-tint: #FDECEA;\n  --color-status-info: #4A5A6A;\n  --color-status-info-tint: #E8EDF2;\n\n  --font-ui: \"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif;\n  --font-doc: \"Aptos\", \"Calibri\", sans-serif;\n  --font-mono: \"JetBrains Mono\", ui-monospace, Menlo, Consolas, monospace;\n\n  --font-size-xs: 12px;\n  --font-size-sm: 14px;\n  --font-size-md: 16px;\n  --font-size-lg: 20px;\n  --font-size-xl: 24px;\n  --font-size-2xl: 30px;\n\n  --font-weight-regular: 400;\n  --font-weight-medium: 500;\n  --font-weight-semibold: 600;\n  --font-weight-bold: 700;\n\n  --line-height-tight: 1.25;\n  --line-height-normal: 1.5;\n\n  --space-4: 4px;\n  --space-8: 8px;\n  --space-12: 12px;\n  --space-16: 16px;\n  --space-24: 24px;\n  --space-32: 32px;\n  --space-48: 48px;\n\n  --radius-sm: 2px;\n  --radius-md: 3px;\n  --radius-lg: 4px;\n  --radius-pill: 999px;\n\n  --shadow-sm: 0 1px 2px rgba(35, 39, 46, 0.08);\n  --shadow-md: 0 4px 12px rgba(35, 39, 46, 0.12);\n\n  /* Breakpoints cannot be used inside media queries as variables; listed for reference. */\n  --breakpoint-sm: 640px;\n  --breakpoint-md: 768px;\n  --breakpoint-lg: 1024px;\n  --breakpoint-xl: 1280px;\n}\n";
+const ROLES = {
+  "brand.red": "Brand, key actions", "brand.red-hover": "Pressed red button", "brand.red-dark": "Red headings and text",
+  "brand.red-deepest": "Text on red tint", "brand.red-tint": "Highlights, selected rows",
+  "neutral.white": "Cards, inputs", "neutral.graphite": "Text, main buttons", "neutral.steel": "Secondary text",
+  "neutral.steel-tint": "Info panels", "neutral.muted": "Hints, captions", "neutral.line": "Borders", "neutral.paper": "Page background",
+  "status.warning": "Warning icons, borders", "status.warning-text": "Warning text", "status.warning-tint": "Warning fill",
+  "status.success": "Success icons", "status.success-text": "Success text", "status.success-tint": "Success fill",
+  "status.danger": "Errors, delete", "status.danger-tint": "Error fill", "status.info": "Info border", "status.info-tint": "Info fill"
+};
+const QUOTES = [
+  ["Q-1024", "Example Transport Ltd", "Nairobi", "Truck chassis, 7.5 t", "6 Oct 2026", "Approved", "b-success", "ok", "6,565,897.00", "6.57M", "c2", "ET"],
+  ["Q-1023", "Sample Logistics", "Mombasa", "Bus body, 51 seater", "5 Oct 2026", "Awaiting approval", "b-warning", "wait", "4,100,000.00", "4.10M", "c3", "SL"],
+  ["Q-1022", "Demo Haulage", "Nakuru", "Pickup, double cab", "3 Oct 2026", "Awaiting approval", "b-warning", "wait", "2,875,450.00", "2.88M", "c4", "DH"],
+  ["Q-1021", "Test Coaches Ltd", "Kisumu", "Coach body, 62 seater", "1 Oct 2026", "Draft", "b-neutral", "draft", "9,120,300.00", "9.12M", "c1", "TC"]
+];
+
+function lum(hex) {
+  const v = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(c => c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+  return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2];
+}
+function ratio(a, b) { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); }
+function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove("show"), 1800); }
+function copy(text, label) {
+  try { navigator.clipboard.writeText(text).then(() => toast("Copied " + label), () => toast(label)); } catch (e) { toast(label); }
+}
+
+let count = 0;
+for (const group of ["brand", "neutral", "status"]) {
+  const host = document.getElementById("sw-" + group);
+  for (const [name, hex] of Object.entries(TOKENS.color[group])) {
+    count++;
+    const r = ratio(hex, "#FFFFFF");
+    const grade = r >= 7 ? "AAA" : r >= 4.5 ? "AA" : r >= 3 ? "large text only" : null;
+    const use = grade ? `Text on white ${r.toFixed(2)}:1 · ${grade}` : "Fill or icon only";
+    const v = `--color-${group}-${name}`;
+    const b = document.createElement("button");
+    b.className = "swatch"; b.type = "button";
+    b.setAttribute("aria-label", `${name} ${hex}. Copy token`);
+    b.innerHTML = `<div class="chip" style="background:${hex}"></div><div class="meta"><b>${name.replace(/-/g, " ")}</b><span class="role">${ROLES[group + "." + name] || ""}</span><span class="use">${use}</span><code>${hex}</code></div>`;
+    b.addEventListener("click", () => copy(`var(${v})`, `var(${v})`));
+    host.appendChild(b);
+  }
+}
+document.getElementById("stat-colours").textContent = count;
+
+const max = Math.max(...TOKENS.space);
+document.getElementById("space-scale").innerHTML = TOKENS.space.map(s =>
+  `<div class="space-row"><code>--space-${s}</code><span class="bar" style="width:${(s / max) * 100}%"></span><span class="num">${s} px</span></div>`).join("");
+
+document.getElementById("q-rows").innerHTML = QUOTES.map(q =>
+  `<tr><td><b>${q[0]}</b></td><td><div class="cust"><span class="av sm ${q[10]}">${q[11]}</span><span><b>${q[1]}</b><small>${q[2]}</small></span></div></td><td><span class="vchip">${q[3]}</span></td><td>${q[4]}</td><td><span class="badge ${q[6]}">${q[5]}</span></td><td class="num"><b>${q[8]}</b></td><td class="kebab">&middot;&middot;&middot;</td></tr>`).join("");
+
+const WEEKS = [["W37", 8.2], ["W38", 11.5], ["W39", 9.4], ["W40", 12.1], ["W41", 7.0]];
+(function drawChart() {
+  const svg = document.getElementById("chart");
+  const x0 = 44, x1 = 510, y0 = 172, top = 22, maxV = 15, slot = (x1 - x0) / WEEKS.length, bw = 46;
+  const y = v => y0 - (v / maxV) * (y0 - top);
+  let out = "";
+  for (const g of [0, 5, 10, 15]) out += `<line class="grid" x1="${x0}" x2="${x1}" y1="${y(g)}" y2="${y(g)}"/><text x="${x0 - 10}" y="${y(g) + 4}" text-anchor="end">${g === 0 ? "0" : g + "M"}</text>`;
+  WEEKS.forEach(([w, v], i) => {
+    const cx = x0 + slot * i + slot / 2, last = i === WEEKS.length - 1;
+    out += `<rect class="b${last ? " now" : ""}" x="${cx - bw / 2}" y="${y(v)}" width="${bw}" height="${y0 - y(v)}" rx="6"/>`;
+    out += `<text class="v" x="${cx}" y="${y(v) - 7}" text-anchor="middle">${v.toFixed(1)}</text><text x="${cx}" y="${y0 + 18}" text-anchor="middle">${w}</text>`;
+  });
+  svg.innerHTML = out;
+})();
+
+const tpl = document.getElementById("phone-tpl");
+document.querySelectorAll("[data-phone]").forEach(slot => {
+  const node = tpl.content.cloneNode(true);
+  node.querySelector("[data-cards]").innerHTML = QUOTES.map(q =>
+    `<div class="mq"><span class="av sm ${q[10]}">${q[11]}</span><div><b>${q[1]}</b><small>${q[0]} · ${q[3]}</small></div><div class="r"><div class="amt">${q[9]}</div><span class="dot ${q[7]}">${q[5].replace(" approval", "")}</span></div></div>`).join("");
+  slot.appendChild(node);
+});
+
+const example = document.getElementById("example");
+example.querySelectorAll("[data-view]").forEach(btn => btn.addEventListener("click", () => {
+  example.classList.toggle("is-phone", btn.dataset.view === "phone");
+  example.querySelectorAll("[data-view]").forEach(o => o.setAttribute("aria-pressed", String(o === btn)));
+}));
+if (window.matchMedia("(max-width: 720px)").matches) example.querySelector('[data-view="phone"]').click();
+
+document.querySelectorAll(".tabs").forEach(group => {
+  if (group.closest(".viewer")) return;
+  group.querySelectorAll("button").forEach(btn =>
+    btn.addEventListener("click", () => group.querySelectorAll("button").forEach(o => o.setAttribute("aria-pressed", String(o === btn)))));
+});
+
+document.getElementById("copy-css").addEventListener("click", () => copy(TOKENS_CSS, "tokens.css"));
+
+const root = document.documentElement;
+document.getElementById("theme").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("kci-ds-theme", root.dataset.theme); } catch (e) {}
+});
+try { const saved = localStorage.getItem("kci-ds-theme"); if (saved) root.dataset.theme = saved; } catch (e) {}
+</script>
+</body>
+</html>
