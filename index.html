@@ -645,44 +645,81 @@ table.t tr:last-child td { border-bottom: 0; }
 .auth-phone .screen { background: var(--surface); color: var(--fg); }
 
 /* Status screens */
-.st-desk .st-body { display: grid; grid-template-columns: 172px minmax(0, 1fr); min-height: 560px; }
+.st-desk .st-body { display: grid; grid-template-columns: 172px minmax(0, 1fr); min-height: 600px; }
 .st-side { background: var(--surface-2); border-right: 1px solid var(--line); padding: 20px 14px; display: grid; align-content: start; gap: 4px; font-size: 13px; color: var(--fg-2); }
 .st-side img { height: 24px; justify-self: start; background: #fff; border-radius: 3px; padding: 3px 5px; margin: 0 6px 16px; }
 .st-side span { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 3px; }
 .st-side span.on { background: var(--surface); color: var(--fg); font-weight: 600; box-shadow: inset 2px 0 0 var(--color-brand-red); }
-.st-main { display: grid; place-items: center; padding: 32px; background: var(--canvas); background-image: radial-gradient(var(--canvas-dot) 1px, transparent 1px); background-size: 16px 16px; }
-.st-card { width: 100%; max-width: 460px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 32px; box-shadow: 0 1px 2px rgba(16, 19, 24, .05), 0 24px 48px -28px rgba(16, 19, 24, .35); text-align: center; position: relative; overflow: hidden; }
-.st-card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--tone); }
-.st-icon { width: 64px; height: 64px; margin: 0 auto 18px; display: grid; place-items: center; border-radius: 4px; background: var(--tone-tint); color: var(--tone); box-shadow: 0 0 0 8px color-mix(in srgb, var(--tone-tint) 55%, transparent); }
-.st-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--tone-text); }
-.st-card h5 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin: 6px 0 8px; }
-.st-card p { color: var(--fg-2); font-size: 14px; margin: 0 auto; max-width: 40ch; }
-.st-rows { margin: 20px 0 0; border: 1px solid var(--line); border-radius: 3px; text-align: left; font-size: 13px; }
-.st-rows div { display: flex; justify-content: space-between; gap: 16px; padding: 9px 14px; border-bottom: 1px solid var(--line); }
-.st-rows div:last-child { border-bottom: 0; }
-.st-rows span:first-child { color: var(--fg-3); }
-.st-rows b { font-variant-numeric: tabular-nums; text-align: right; }
-.st-count { font-family: var(--mono); font-size: 40px; font-weight: 600; letter-spacing: .02em; color: var(--tone-text); margin: 16px 0 0; font-variant-numeric: tabular-nums; }
-.st-actions { display: flex; gap: 10px; justify-content: center; margin-top: 24px; flex-wrap: wrap; }
-.st-note { margin-top: 16px; font-size: 12.5px; color: var(--fg-3); }
+.st-main { position: relative; display: grid; place-items: center; padding: 36px; background: var(--canvas); overflow: hidden; }
+.st-ghost { position: absolute; inset: 0; padding: 28px 32px; display: grid; align-content: start; gap: 14px; opacity: .8; filter: blur(1px); pointer-events: none; }
+.st-ghost i { display: block; height: 12px; border-radius: 2px; background: var(--line); }
+.st-ghost .row { display: grid; grid-template-columns: 1fr 2fr 1.4fr 1fr; gap: 16px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; }
+.st-main::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, transparent 30%, color-mix(in srgb, var(--canvas) 70%, transparent) 100%); pointer-events: none; }
+.st-main .st-card { position: relative; z-index: 1; }
+
+.st-card { width: 100%; max-width: 480px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; text-align: left; overflow: hidden; box-shadow: 0 1px 2px rgba(16, 19, 24, .06), 0 30px 60px -30px rgba(16, 19, 24, .45); }
+.st-hd { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding: 26px 26px 20px; background: linear-gradient(180deg, color-mix(in srgb, var(--tone-tint) 85%, transparent), transparent); border-top: 3px solid var(--tone); }
+.st-badge { position: relative; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 4px; background: var(--surface); color: var(--tone); border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--tone-tint) 80%, transparent), 0 8px 18px -8px color-mix(in srgb, var(--tone) 60%, transparent); }
+.st-chip { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; background: var(--surface); color: var(--tone-text); border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent); }
+.st-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--tone); }
+.st-card h5 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin: 10px 0 6px; }
+.st-card .st-lead { color: var(--fg-2); font-size: 14px; line-height: 1.55; margin: 0; }
+.st-bd { padding: 4px 26px 22px; display: grid; gap: 16px; }
+.st-list { border: 1px solid var(--line); border-radius: 3px; font-size: 13px; }
+.st-list > div { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.st-list > div:last-child { border-bottom: 0; }
+.st-list svg { color: var(--fg-3); }
+.st-list span { color: var(--fg-2); }
+.st-list b { font-variant-numeric: tabular-nums; text-align: right; }
+.st-list .tag { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 2px; background: var(--surface-2); color: var(--fg-2); }
+.st-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.st-track div { display: grid; gap: 6px; font-size: 11.5px; color: var(--fg-3); }
+.st-track div::before { content: ""; height: 4px; border-radius: 2px; background: var(--line); }
+.st-track .done { color: var(--fg-2); }
+.st-track .done::before { background: var(--tone); }
+.st-track .now { color: var(--fg); font-weight: 700; }
+.st-track .now::before { background: linear-gradient(90deg, var(--tone) 50%, var(--line) 50%); }
+.st-safe { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: 3px; background: var(--color-status-success-tint); color: var(--color-status-success-text); font-size: 13px; }
+.st-safe svg { flex: none; margin-top: 1px; }
+.st-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 13px; color: var(--fg-2); counter-reset: s; }
+.st-steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; counter-increment: s; }
+.st-steps li::before { content: counter(s); width: 22px; height: 22px; border-radius: 3px; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--surface-2); color: var(--fg-2); border: 1px solid var(--line); }
+.st-ref { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px dashed var(--line-strong); border-radius: 3px; font-size: 12.5px; color: var(--fg-3); }
+.st-ref code { font-family: var(--mono); font-size: 12.5px; color: var(--fg); }
+.st-ref > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.st-phone .st-ref > span { font-size: 11.5px; }
+.st-phone .st-ref code { font-size: 11.5px; }
+.st-ref button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--fg); border-radius: 3px; padding: 5px 9px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+.st-ring { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: center; }
+.st-ring svg { width: 96px; height: 96px; }
+.st-ring .trk { stroke: var(--tone-tint); }
+.st-ring .bar { stroke: var(--tone); transition: stroke-dashoffset 1s linear; }
+.st-ring text { font-family: var(--mono); font-size: 19px; font-weight: 600; fill: var(--fg); }
+.st-ring p { font-size: 13px; color: var(--fg-2); margin: 0; }
+.st-ring b { color: var(--fg); }
+.st-ft { display: flex; align-items: center; gap: 10px; padding: 14px 26px; background: var(--surface-2); border-top: 1px solid var(--line); }
+.st-ft .st-note { margin: 0 auto 0 0; font-size: 12px; color: var(--fg-3); }
+.st-ft .b { height: 38px; }
+@media (prefers-reduced-motion: reduce) { .st-ring .bar { transition: none; } }
+
 .st-phone .screen { background: var(--canvas); color: var(--fg); }
-.st-phone .st-mbody { flex: 1; display: flex; flex-direction: column; padding: 10px 18px 22px; }
-.st-phone .st-mtop { display: flex; align-items: center; justify-content: space-between; padding: 4px 0 20px; }
+.st-phone .st-mbody { flex: 1; display: flex; flex-direction: column; padding: 8px 14px 18px; min-height: 0; }
+.st-phone .st-mtop { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 14px; }
 .st-phone .st-mtop img { height: 22px; }
-.st-phone .st-card { padding: 22px 16px; max-width: none; }
-.st-phone .st-icon { width: 48px; height: 48px; margin-bottom: 12px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--tone-tint) 55%, transparent); }
-.st-phone .st-note { display: none; }
-.st-phone .st-actions { margin-top: 18px; gap: 8px; }
-.st-phone .st-rows { margin-top: 14px; }
-.st-phone .st-rows div { padding: 7px 10px; gap: 8px; }
-.st-phone .st-rows span:first-child { white-space: nowrap; }
-.st-phone .st-card h5 { font-size: 19px; }
-.st-phone .st-card p { font-size: 13px; }
-.st-phone .st-rows { font-size: 12px; }
-.st-phone .st-rows div { padding: 8px 10px; }
-.st-phone .st-count { font-size: 34px; }
-.st-phone .st-actions { flex-direction: column; }
-.st-phone .st-actions .b { width: 100%; }
+.st-phone .st-card { max-width: none; }
+.st-phone .st-hd { grid-template-columns: 1fr; gap: 12px; padding: 20px 18px 14px; }
+.st-phone .st-badge { width: 46px; height: 46px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--tone-tint) 80%, transparent); }
+.st-phone .st-card h5 { font-size: 18px; margin-top: 8px; }
+.st-phone .st-card .st-lead { font-size: 12.5px; }
+.st-phone .st-bd { padding: 2px 18px 16px; gap: 12px; }
+.st-phone .st-list { font-size: 12px; }
+.st-phone .st-list > div { padding: 8px 10px; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; }
+.st-phone .st-list > div:nth-child(n+3) { display: none; }
+.st-phone .st-steps, .st-phone .st-ft .st-note { display: none; }
+.st-phone .st-ring { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
+.st-phone .st-ring svg { width: 76px; height: 76px; }
+.st-phone .st-ft { flex-direction: column-reverse; align-items: stretch; padding: 12px 18px; gap: 8px; }
+.st-phone .st-ft .b { width: 100%; height: 42px; }
 .st-wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; }
 .tone-success { --tone: var(--color-status-success); --tone-tint: var(--color-status-success-tint); --tone-text: var(--color-status-success-text); }
 .tone-error { --tone: var(--color-status-danger); --tone-tint: var(--color-status-danger-tint); --tone-text: var(--color-status-danger); }
@@ -1435,7 +1472,7 @@ footer.site .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: 
         <div class="chrome"><i></i><i></i><i></i><span class="url">sales.kci.co.ke/quotes/Q-2026-01023</span></div>
         <div class="st-body">
           <div class="st-side"><img src="data:image/png;base64,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" alt="KCI"><span><svg width="16" height="16"><use href="#i-home"/></svg>Overview</span><span class="on"><svg width="16" height="16"><use href="#i-doc"/></svg>Quotes</span><span><svg width="16" height="16"><use href="#i-tag"/></svg>Price guide</span><span><svg width="16" height="16"><use href="#i-coin"/></svg>Claims</span><span><svg width="16" height="16"><use href="#i-chart"/></svg>Reports</span></div>
-          <div class="st-main"><div class="st-card" data-state-card></div></div>
+          <div class="st-main"><div class="st-ghost" aria-hidden="true"><i style="width:30%;height:18px"></i><i style="width:55%"></i><div class="row"><i></i><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i><i></i></div></div><div class="st-card" data-state-card></div></div>
         </div>
       </div>
     </div></div>
@@ -1883,49 +1920,69 @@ if (window.QRCode) {
 (function statusScreens() {
   const section = document.getElementById("states");
   if (!section) return;
+  const TOTAL = 120;
+  const tick = '<svg width="14" height="14"><use href="#i-check"/></svg>';
   const STATES = {
-    success: { icon: "i-check", eyebrow: "Quote submitted", title: "Sent for director approval",
-      body: "Q-2026-01023 for Sample Logistics is with the director. You will get an email as soon as it is approved.",
-      rows: [["Quote", "Q-2026-01023"], ["Total (incl. VAT)", "KES 4,100,000.00"], ["Usual approval time", "Within 1 working day"]],
-      primary: ["b-primary", "View quote"], secondary: "Raise another quote", note: "Approval status is also shown on the quote." },
-    error: { icon: "i-x", eyebrow: "Not saved", title: "We could not save your quote",
-      body: "The connection dropped while saving. Your changes are kept on this device, so nothing is lost.",
-      rows: [["Reference", "ERR-7F3A-1023"], ["Time", "9 Oct 2026, 08:14"]],
-      primary: ["b-primary", "Try again"], secondary: "Save as draft", note: "If it keeps happening, send the reference to KCI IT." },
-    info: { icon: "i-info", eyebrow: "Price guide", title: "October prices are now live",
-      body: "New list prices apply to quotes raised from today. Quotes raised earlier keep their prices until they expire.",
-      rows: [["Models updated", "42"], ["Effective from", "1 Oct 2026"], ["Existing quotes", "Unchanged until expiry"]],
-      primary: ["b-primary", "View price guide"], secondary: "Dismiss", note: "Shown once per update." },
-    warning: { icon: "i-warn", eyebrow: "Session ending", title: "You will be signed out soon",
-      body: "For your security, inactive sessions end after 30 minutes. Unsaved changes on this page are kept as a draft.",
-      count: true, primary: ["b-primary", "Stay signed in"], secondary: "Sign out now", note: "Stay signed in to continue where you left off." }
+    success: {
+      icon: "i-check", chip: "Quote submitted", title: "Sent for director approval",
+      lead: "Q-2026-01023 for Sample Logistics is now with the director. We will email you the moment it is approved.",
+      body: () => `<div class="st-track"><div class="done">Submitted</div><div class="now">Director approval</div><div>Approved</div><div>Invoiced</div></div>
+        <div class="st-list"><div><svg width="16" height="16"><use href="#i-doc"/></svg><span>Quote</span><b>Q-2026-01023</b></div>
+        <div><svg width="16" height="16"><use href="#i-coin"/></svg><span>Total incl. VAT</span><b>KES 4,100,000.00</b></div>
+        <div><svg width="16" height="16"><use href="#i-cal"/></svg><span>Usual approval</span><b>1 working day</b></div></div>`,
+      primary: "View quote", secondary: "Raise another", note: "Status also shows on the quote."
+    },
+    error: {
+      icon: "i-x", chip: "Not saved", title: "We could not save your quote",
+      lead: "The connection dropped while saving. Nothing is lost.",
+      body: () => `<div class="st-safe">${tick}<span><b>Your work is safe.</b> All changes are kept on this device until the quote saves.</span></div>
+        <ol class="st-steps"><li>Check your internet or mobile data</li><li>Press Try again</li><li>Still failing? Send the reference below to KCI IT</li></ol>
+        <div class="st-ref"><span>Reference <code>ERR-7F3A-1023</code></span><button type="button" data-copy-ref><svg width="13" height="13"><use href="#i-copy"/></svg>Copy</button></div>`,
+      primary: "Try again", secondary: "Save as draft", note: "9 Oct 2026, 08:14"
+    },
+    info: {
+      icon: "i-info", chip: "Price guide", title: "October prices are now live",
+      lead: "New list prices apply to quotes raised from today. Earlier quotes keep their prices until they expire.",
+      body: () => `<div class="st-list"><div><svg width="16" height="16"><use href="#i-tag"/></svg><span>Models updated</span><b>42 <span class="tag">of 58</span></b></div>
+        <div><svg width="16" height="16"><use href="#i-cal"/></svg><span>Effective from</span><b>1 Oct 2026</b></div>
+        <div><svg width="16" height="16"><use href="#i-doc"/></svg><span>Your open quotes</span><b>Unchanged</b></div></div>`,
+      primary: "View price guide", secondary: "Dismiss", note: "Shown once per update."
+    },
+    warning: {
+      icon: "i-warn", chip: "Session ending", title: "You will be signed out soon",
+      lead: "For your security, inactive sessions end after 30 minutes.",
+      body: () => `<div class="st-ring"><svg viewBox="0 0 96 96" aria-hidden="true"><circle class="trk" cx="48" cy="48" r="40" fill="none" stroke-width="7"/><circle class="bar" data-ring cx="48" cy="48" r="40" fill="none" stroke-width="7" stroke-linecap="round" transform="rotate(-90 48 48)" stroke-dasharray="251.3" stroke-dashoffset="0"/><text x="48" y="55" text-anchor="middle" data-count>02:00</text></svg>
+        <p><b>Unsaved changes are kept as a draft.</b> Choose Stay signed in to carry on where you left off.</p></div>`,
+      primary: "Stay signed in", secondary: "Sign out now", note: "Auto sign-out protects shared devices."
+    }
   };
-  let current = "success", left = 119;
+  let current = "success", left = TOTAL;
   const fmt = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  const updateRing = () => {
+    section.querySelectorAll("[data-count]").forEach(c => { c.textContent = fmt(left); });
+    section.querySelectorAll("[data-ring]").forEach(r => { r.style.strokeDashoffset = String(251.3 * (1 - left / TOTAL)); });
+  };
   const render = () => {
     const d = STATES[current];
     section.querySelectorAll("[data-state-card]").forEach(card => {
       card.className = `st-card tone-${current}`;
-      card.innerHTML = `<div class="st-icon"><svg width="28" height="28"><use href="#${d.icon}"/></svg></div>
-        <div class="st-eyebrow">${d.eyebrow}</div><h5>${d.title}</h5><p>${d.body}</p>
-        ${d.count ? `<div class="st-count" data-count>${fmt(left)}</div>` : ""}
-        ${d.rows ? `<div class="st-rows">${d.rows.map(r => `<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join("")}</div>` : ""}
-        <div class="st-actions"><button class="b ${d.primary[0]}" type="button">${d.primary[1]}</button><button class="b b-secondary" type="button">${d.secondary}</button></div>
-        <div class="st-note">${d.note}</div>`;
+      card.innerHTML = `<div class="st-hd"><span class="st-badge"><svg width="26" height="26"><use href="#${d.icon}"/></svg></span>
+          <div><span class="st-chip">${d.chip}</span><h5>${d.title}</h5><p class="st-lead">${d.lead}</p></div></div>
+        <div class="st-bd">${d.body()}</div>
+        <div class="st-ft"><span class="st-note">${d.note}</span><button class="b b-secondary b-sm" type="button">${d.secondary}</button><button class="b b-primary b-sm" type="button">${d.primary}</button></div>`;
     });
+    section.querySelectorAll("[data-copy-ref]").forEach(b => b.addEventListener("click", () => copy("ERR-7F3A-1023", "reference ERR-7F3A-1023")));
+    updateRing();
   };
   section.querySelectorAll("[data-state]").forEach(b => b.addEventListener("click", () => {
-    current = b.dataset.state; left = 119;
+    current = b.dataset.state; left = TOTAL;
     section.querySelectorAll("[data-state]").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
     render();
   }));
-  setInterval(() => {
-    if (current !== "warning") return;
-    left = left > 0 ? left - 1 : 119;
-    section.querySelectorAll("[data-count]").forEach(c => { c.textContent = fmt(left); });
-  }, 1000);
+  setInterval(() => { if (current !== "warning") return; left = left > 0 ? left - 1 : TOTAL; updateRing(); }, 1000);
   render();
 })();
+
 
 document.querySelectorAll(".hscroll").forEach(box => {
   const track = box.querySelector(".hs-track");
