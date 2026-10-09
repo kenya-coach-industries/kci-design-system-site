@@ -657,69 +657,32 @@ table.t tr:last-child td { border-bottom: 0; }
 .st-main::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, transparent 30%, color-mix(in srgb, var(--canvas) 70%, transparent) 100%); pointer-events: none; }
 .st-main .st-card { position: relative; z-index: 1; }
 
-.st-card { width: 100%; max-width: 480px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; text-align: left; overflow: hidden; box-shadow: 0 1px 2px rgba(16, 19, 24, .06), 0 30px 60px -30px rgba(16, 19, 24, .45); }
-.st-hd { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding: 26px 26px 20px; background: linear-gradient(180deg, color-mix(in srgb, var(--tone-tint) 85%, transparent), transparent); border-top: 3px solid var(--tone); }
-.st-badge { position: relative; width: 56px; height: 56px; display: grid; place-items: center; border-radius: 4px; background: var(--surface); color: var(--tone); border: 1px solid color-mix(in srgb, var(--tone) 35%, transparent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--tone-tint) 80%, transparent), 0 8px 18px -8px color-mix(in srgb, var(--tone) 60%, transparent); }
-.st-chip { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; background: var(--surface); color: var(--tone-text); border: 1px solid color-mix(in srgb, var(--tone) 30%, transparent); }
-.st-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--tone); }
-.st-card h5 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin: 10px 0 6px; }
-.st-card .st-lead { color: var(--fg-2); font-size: 14px; line-height: 1.55; margin: 0; }
-.st-bd { padding: 4px 26px 22px; display: grid; gap: 16px; }
-.st-list { border: 1px solid var(--line); border-radius: 3px; font-size: 13px; }
-.st-list > div { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); }
-.st-list > div:last-child { border-bottom: 0; }
-.st-list svg { color: var(--fg-3); }
-.st-list span { color: var(--fg-2); }
-.st-list b { font-variant-numeric: tabular-nums; text-align: right; }
-.st-list .tag { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 2px; background: var(--surface-2); color: var(--fg-2); }
-.st-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
-.st-track div { display: grid; gap: 6px; font-size: 11.5px; color: var(--fg-3); }
-.st-track div::before { content: ""; height: 4px; border-radius: 2px; background: var(--line); }
-.st-track .done { color: var(--fg-2); }
-.st-track .done::before { background: var(--tone); }
-.st-track .now { color: var(--fg); font-weight: 700; }
-.st-track .now::before { background: linear-gradient(90deg, var(--tone) 50%, var(--line) 50%); }
-.st-safe { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: 3px; background: var(--color-status-success-tint); color: var(--color-status-success-text); font-size: 13px; }
-.st-safe svg { flex: none; margin-top: 1px; }
-.st-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 13px; color: var(--fg-2); counter-reset: s; }
-.st-steps li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; counter-increment: s; }
-.st-steps li::before { content: counter(s); width: 22px; height: 22px; border-radius: 3px; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--surface-2); color: var(--fg-2); border: 1px solid var(--line); }
-.st-ref { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 1px dashed var(--line-strong); border-radius: 3px; font-size: 12.5px; color: var(--fg-3); }
-.st-ref code { font-family: var(--mono); font-size: 12.5px; color: var(--fg); }
-.st-ref > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.st-phone .st-ref > span { font-size: 11.5px; }
-.st-phone .st-ref code { font-size: 11.5px; }
-.st-ref button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--fg); border-radius: 3px; padding: 5px 9px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
-.st-ring { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: center; }
-.st-ring svg { width: 96px; height: 96px; }
-.st-ring .trk { stroke: var(--tone-tint); }
-.st-ring .bar { stroke: var(--tone); transition: stroke-dashoffset 1s linear; }
-.st-ring text { font-family: var(--mono); font-size: 19px; font-weight: 600; fill: var(--fg); }
-.st-ring p { font-size: 13px; color: var(--fg-2); margin: 0; }
-.st-ring b { color: var(--fg); }
-.st-ft { display: flex; align-items: center; gap: 10px; padding: 14px 26px; background: var(--surface-2); border-top: 1px solid var(--line); }
-.st-ft .st-note { margin: 0 auto 0 0; font-size: 12px; color: var(--fg-3); }
-.st-ft .b { height: 38px; }
-@media (prefers-reduced-motion: reduce) { .st-ring .bar { transition: none; } }
+.st-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 36px 36px 32px; text-align: left; box-shadow: 0 1px 2px rgba(16, 19, 24, .05), 0 24px 56px -32px rgba(16, 19, 24, .4); }
+.st-icon2 { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 4px; background: var(--tone-tint); color: var(--tone); }
+.st-card h5 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.25; margin: 22px 0 8px; }
+.st-card .st-lead { color: var(--fg-2); font-size: 14.5px; line-height: 1.6; margin: 0; max-width: 36ch; }
+.st-key { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13.5px; color: var(--fg-2); }
+.st-key b { color: var(--fg); font-variant-numeric: tabular-nums; }
+.st-key code { font-family: var(--mono); font-size: 13px; color: var(--fg); }
+.st-key button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; padding: 0; font: inherit; font-size: 13px; font-weight: 600; color: var(--accent-text); cursor: pointer; }
+.st-actions2 { display: flex; gap: 10px; margin-top: 28px; }
+.st-ring2 { position: relative; width: 72px; height: 72px; }
+.st-ring2 svg { width: 72px; height: 72px; display: block; }
+.st-ring2 .trk { stroke: var(--tone-tint); }
+.st-ring2 .bar { stroke: var(--tone); transition: stroke-dashoffset 1s linear; }
+.st-ring2 span { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .st-ring2 .bar { transition: none; } }
 
 .st-phone .screen { background: var(--canvas); color: var(--fg); }
 .st-phone .st-mbody { flex: 1; display: flex; flex-direction: column; padding: 8px 14px 18px; min-height: 0; }
 .st-phone .st-mtop { display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 14px; }
 .st-phone .st-mtop img { height: 22px; }
-.st-phone .st-card { max-width: none; }
-.st-phone .st-hd { grid-template-columns: 1fr; gap: 12px; padding: 20px 18px 14px; }
-.st-phone .st-badge { width: 46px; height: 46px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--tone-tint) 80%, transparent); }
-.st-phone .st-card h5 { font-size: 18px; margin-top: 8px; }
-.st-phone .st-card .st-lead { font-size: 12.5px; }
-.st-phone .st-bd { padding: 2px 18px 16px; gap: 12px; }
-.st-phone .st-list { font-size: 12px; }
-.st-phone .st-list > div { padding: 8px 10px; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; }
-.st-phone .st-list > div:nth-child(n+3) { display: none; }
-.st-phone .st-steps, .st-phone .st-ft .st-note { display: none; }
-.st-phone .st-ring { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
-.st-phone .st-ring svg { width: 76px; height: 76px; }
-.st-phone .st-ft { flex-direction: column-reverse; align-items: stretch; padding: 12px 18px; gap: 8px; }
-.st-phone .st-ft .b { width: 100%; height: 42px; }
+.st-phone .st-card { max-width: none; padding: 26px 22px 22px; margin: auto 0; }
+.st-phone .st-card h5 { font-size: 19px; margin-top: 18px; }
+.st-phone .st-card .st-lead { font-size: 13.5px; }
+.st-phone .st-actions2 { flex-direction: column; margin-top: 24px; }
+.st-phone .st-actions2 .b { width: 100%; height: 44px; }
+.st-phone .st-key { font-size: 12.5px; }
 .st-wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: center; }
 .tone-success { --tone: var(--color-status-success); --tone-tint: var(--color-status-success-tint); --tone-text: var(--color-status-success-text); }
 .tone-error { --tone: var(--color-status-danger); --tone-tint: var(--color-status-danger-tint); --tone-text: var(--color-status-danger); }
@@ -1920,56 +1883,32 @@ if (window.QRCode) {
 (function statusScreens() {
   const section = document.getElementById("states");
   if (!section) return;
-  const TOTAL = 120;
-  const tick = '<svg width="14" height="14"><use href="#i-check"/></svg>';
+  const TOTAL = 120, C = 2 * Math.PI * 30;
   const STATES = {
-    success: {
-      icon: "i-check", chip: "Quote submitted", title: "Sent for director approval",
-      lead: "Q-2026-01023 for Sample Logistics is now with the director. We will email you the moment it is approved.",
-      body: () => `<div class="st-track"><div class="done">Submitted</div><div class="now">Director approval</div><div>Approved</div><div>Invoiced</div></div>
-        <div class="st-list"><div><svg width="16" height="16"><use href="#i-doc"/></svg><span>Quote</span><b>Q-2026-01023</b></div>
-        <div><svg width="16" height="16"><use href="#i-coin"/></svg><span>Total incl. VAT</span><b>KES 4,100,000.00</b></div>
-        <div><svg width="16" height="16"><use href="#i-cal"/></svg><span>Usual approval</span><b>1 working day</b></div></div>`,
-      primary: "View quote", secondary: "Raise another", note: "Status also shows on the quote."
-    },
-    error: {
-      icon: "i-x", chip: "Not saved", title: "We could not save your quote",
-      lead: "The connection dropped while saving. Nothing is lost.",
-      body: () => `<div class="st-safe">${tick}<span><b>Your work is safe.</b> All changes are kept on this device until the quote saves.</span></div>
-        <ol class="st-steps"><li>Check your internet or mobile data</li><li>Press Try again</li><li>Still failing? Send the reference below to KCI IT</li></ol>
-        <div class="st-ref"><span>Reference <code>ERR-7F3A-1023</code></span><button type="button" data-copy-ref><svg width="13" height="13"><use href="#i-copy"/></svg>Copy</button></div>`,
-      primary: "Try again", secondary: "Save as draft", note: "9 Oct 2026, 08:14"
-    },
-    info: {
-      icon: "i-info", chip: "Price guide", title: "October prices are now live",
-      lead: "New list prices apply to quotes raised from today. Earlier quotes keep their prices until they expire.",
-      body: () => `<div class="st-list"><div><svg width="16" height="16"><use href="#i-tag"/></svg><span>Models updated</span><b>42 <span class="tag">of 58</span></b></div>
-        <div><svg width="16" height="16"><use href="#i-cal"/></svg><span>Effective from</span><b>1 Oct 2026</b></div>
-        <div><svg width="16" height="16"><use href="#i-doc"/></svg><span>Your open quotes</span><b>Unchanged</b></div></div>`,
-      primary: "View price guide", secondary: "Dismiss", note: "Shown once per update."
-    },
-    warning: {
-      icon: "i-warn", chip: "Session ending", title: "You will be signed out soon",
-      lead: "For your security, inactive sessions end after 30 minutes.",
-      body: () => `<div class="st-ring"><svg viewBox="0 0 96 96" aria-hidden="true"><circle class="trk" cx="48" cy="48" r="40" fill="none" stroke-width="7"/><circle class="bar" data-ring cx="48" cy="48" r="40" fill="none" stroke-width="7" stroke-linecap="round" transform="rotate(-90 48 48)" stroke-dasharray="251.3" stroke-dashoffset="0"/><text x="48" y="55" text-anchor="middle" data-count>02:00</text></svg>
-        <p><b>Unsaved changes are kept as a draft.</b> Choose Stay signed in to carry on where you left off.</p></div>`,
-      primary: "Stay signed in", secondary: "Sign out now", note: "Auto sign-out protects shared devices."
-    }
+    success: { icon: "i-check", title: "Sent for director approval", lead: 'We will email you as soon as quote <span style="white-space:nowrap">Q-2026-01023</span> is approved.',
+      key: () => `<div class="st-key"><span>Sample Logistics</span><b>KES 4,100,000.00</b></div>`, primary: "View quote", secondary: "Raise another" },
+    error: { icon: "i-x", title: "Quote not saved", lead: "The connection dropped. Your changes are kept on this device, so nothing is lost.",
+      key: () => `<div class="st-key"><span>Reference <code>ERR-7F3A-1023</code></span><button type="button" data-copy-ref><svg width="13" height="13"><use href="#i-copy"/></svg>Copy</button></div>`, primary: "Try again", secondary: "Save as draft" },
+    info: { icon: "i-info", title: "October prices are live", lead: "New prices apply to quotes raised from today. Your open quotes keep their prices.",
+      key: () => "", primary: "View price guide", secondary: "Dismiss" },
+    warning: { ring: true, title: "You will be signed out soon", lead: "For your security, inactive sessions end after 30 minutes. Your work is kept as a draft.",
+      key: () => "", primary: "Stay signed in", secondary: "Sign out" }
   };
   let current = "success", left = TOTAL;
-  const fmt = s => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  const fmt = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
   const updateRing = () => {
     section.querySelectorAll("[data-count]").forEach(c => { c.textContent = fmt(left); });
-    section.querySelectorAll("[data-ring]").forEach(r => { r.style.strokeDashoffset = String(251.3 * (1 - left / TOTAL)); });
+    section.querySelectorAll("[data-ring]").forEach(r => { r.style.strokeDashoffset = String(C * (1 - left / TOTAL)); });
   };
   const render = () => {
     const d = STATES[current];
+    const top = d.ring
+      ? `<div class="st-ring2"><svg viewBox="0 0 72 72" aria-hidden="true"><circle class="trk" cx="36" cy="36" r="30" fill="none" stroke-width="5"/><circle class="bar" data-ring cx="36" cy="36" r="30" fill="none" stroke-width="5" stroke-linecap="round" transform="rotate(-90 36 36)" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg><span data-count>2:00</span></div>`
+      : `<span class="st-icon2"><svg width="22" height="22"><use href="#${d.icon}"/></svg></span>`;
     section.querySelectorAll("[data-state-card]").forEach(card => {
       card.className = `st-card tone-${current}`;
-      card.innerHTML = `<div class="st-hd"><span class="st-badge"><svg width="26" height="26"><use href="#${d.icon}"/></svg></span>
-          <div><span class="st-chip">${d.chip}</span><h5>${d.title}</h5><p class="st-lead">${d.lead}</p></div></div>
-        <div class="st-bd">${d.body()}</div>
-        <div class="st-ft"><span class="st-note">${d.note}</span><button class="b b-secondary b-sm" type="button">${d.secondary}</button><button class="b b-primary b-sm" type="button">${d.primary}</button></div>`;
+      card.innerHTML = `${top}<h5>${d.title}</h5><p class="st-lead">${d.lead}</p>${d.key()}
+        <div class="st-actions2"><button class="b b-primary" type="button">${d.primary}</button><button class="b b-ghost" type="button">${d.secondary}</button></div>`;
     });
     section.querySelectorAll("[data-copy-ref]").forEach(b => b.addEventListener("click", () => copy("ERR-7F3A-1023", "reference ERR-7F3A-1023")));
     updateRing();
